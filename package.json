@@ -1,0 +1,28 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "description": "Codespace Bootcamp Final Proyect",
+  "main": "index-es7.js",
+  "scripts": {
+    "start": "node index-es7.js mysql",
+    "debug": "Set DEBUG=express:*",
+    "mon": "node_modules/.bin/nodemon index-es7.js mysql"
+  },
+  "author": "Juanma Rojas",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "mysql": "github:mysqljs/mysql",
+    "npm": "^6.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.1.0",
+    "nodemon": "^1.17.3"
+  }
+}
