@@ -2,33 +2,36 @@ import mysql from '../config/mysql'
 var connection = mysql.connection;
 
 let selectUsuario = function (req, res) {
-    
+    // Set values into session
+    //initialize session variable
+
     let usuario = {
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
     }
+
     return new Promise((resolve,reject)=>{
+        var sess = req.session;
         
         mysql.connection.query(
             `SELECT * FROM usuarios WHERE email= '${usuario.email}' AND password= '${usuario.password}' `,
           function(error, results, fields) {
             if (error) {
-                console.log('Estoy aquí');
-                console.log("my error ", error);
-                
+
                 let results = {
                     error: error
                 };
 
               reject(error);
             } else {
-                let results = {
-                    error: null,
-                    id: usuario.id,
-                    nombre: usuario.nombre,
-                    password: usuario.password,
-                    email: usuario.email
-                }
+
+                console.log('El resultado es :', results)
+                req.session.userId = JSON.stringify(results[0].usuarioID); 
+                req.session.user = results[0].nombre;//set user name
+
+                console.log("La req.session.user es .... " + req.session.user);
+                console.log("La user es .... " + req.session.userId);
+                
                 resolve(results);
             }
           }

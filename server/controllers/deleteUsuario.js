@@ -4,8 +4,6 @@ export default(function (req, res) {
     
     var id = req.body.id;
     
-    console.error("La peticion llega aqui")
-
     repo.deleteUsuario(id).then(results => {
         res.send(JSON.stringify(results))
     }).catch(results=>{
