@@ -2,18 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -22,13 +10,33 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Navbar-wrapper {
+  background: rgba(255, 255, 255, 0);
+  padding-left: 2%;
+  padding-right: 5%;
+  border: none;
+  box-shadow: none;
+}
+
+.Navbar-wrapper,
+p {
+  font-size: 20px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.Navbar,
+a {
+  color: black;
+  text-decoration-color: black;
+  font-weight: bold;
+}
+
+.Login-wrapper {
+  background-image: url("./images/background-login2.jpg");
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 5% 20% 5%;
 }
 
 .FormLogin-wrapper {
@@ -46,11 +54,7 @@ p {
   padding: 100px;
   z-index: 1;
 }
-.Form-wrapper {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 5%;
-}
+
 
 .Login-form {
   width: 50%;
@@ -58,8 +62,7 @@ p {
   margin-top: 5%;
 }
 #footer {
-  position: absolute;
-  bottom: 0;
+  position: relative;
   width: 100%;
 }
 .Background-image-home {
@@ -68,6 +71,32 @@ p {
 }
 .Background-image-login {
   height: 600px;
- background-size: cover;
+  background-size: cover;
+}
 
- }
+.Register-form {
+  width: 100%;
+  height: auto;
+  padding: 5% 20% 5%;
+}
+.Register-wrapper {
+  background-image: url("./images/background-register-welcomeboard.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 5% 20% 5%;
+}
+
+.Update-form {
+  width: 100%;
+  height: auto;
+  padding: 5% 20% 5%;
+}
+/* Cambiar Foto fondo */
+.Update-wrapper {   
+  background-image: url("./images/background-register-welcomebar.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 5% 20% 5%;
+}

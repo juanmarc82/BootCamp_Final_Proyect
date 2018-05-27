@@ -58,10 +58,11 @@ export class FormRegister extends Component {
 
   render() {
     return (
-      <div className='Form-wrapper'>
-      <Segment.Group>
+      <div className='Register-wrapper'>
+      <div className='Register-form'>
+          <Segment.Group unstackable>
         <Segment inverted color="grey" size="tiny" raised>
-          <Form onSubmit={this._handleSubmit}>
+          <Form onSubmit={this._handleSubmit} >
             <Segment textAlign="center" inverted color="blue" size="tiny" raised>
               <h2>Regístrate</h2>
             </Segment>
@@ -130,12 +131,14 @@ export class FormRegister extends Component {
                 placeholder="Tu NIE"
                 type="text"
                 required
+                validationState
               />
             </Form.Group>
             <Button type="submit" color='green'>Log In</Button>
           </Form>
         </Segment>
       </Segment.Group>
+      </div>
       </div>
     );
   }

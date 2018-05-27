@@ -34,9 +34,3 @@ app.listen(3001, () =>{
     
 })
 
-/*
-// Destroy/unset user session
-req.session.destroy(function(err) {
-    //cal back method
- })
-*/

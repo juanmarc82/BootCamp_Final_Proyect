@@ -21,29 +21,32 @@ export class MenuNav extends Component {
   }
 
   render() {
-    return (
-        <Navbar fixedTop fluid>
+    return <Navbar collapseOnSelect fixedTop stackable fluid className="Navbar-wrapper">
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={`/`}>Stop | Go</Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
-        <Nav>
-          <NavItem eventKey={1}>
-            <Link to={`/viaje`}>Busca un viaje</Link>
-          </NavItem>
-          <NavItem eventKey={2}>
-            <Link to={`/contacto`}>Sobre nosotros</Link>
-          </NavItem>
-          <NavItem eventKey={3} onClick={this._handleClickRegister}>
-            <Link to={`/registro`}>Registro</Link>
-          </NavItem>
-          <NavItem eventKey={4} onClick={this._handleClickLogin}>
-            <Link to={`/login`}>Login</Link>
-          </NavItem>
-        </Nav>
-      </Navbar>
-    );
+        <Navbar.Collapse>
+          <Nav className="Nav">
+            <NavItem eventKey={1}>
+              <Link to={`/viaje`}>Busca un viaje</Link>
+            </NavItem>
+            <NavItem eventKey={2}>
+              <Link to={`/contacto`}>Sobre nosotros</Link>
+            </NavItem>
+          </Nav>
+          <Nav pullRight className="Nav">
+            <NavItem eventKey={3} onClick={this._handleClickRegister}>
+              <Link to={`/registro`}>Registro</Link>
+            </NavItem>
+            <NavItem eventKey={4} onClick={this._handleClickLogin}>
+              <Link to={`/login`}>Login</Link>
+            </NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>;
   }
 }
 
