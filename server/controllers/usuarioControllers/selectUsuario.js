@@ -1,5 +1,5 @@
-import mysql from "../config/mysql";
-import repo from '../repositorio/';
+import mysql from "../../config/mysql";
+import repo from '../../repositorio/';
 import { log } from "util";
 var connection = mysql.connection;
 

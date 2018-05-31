@@ -1,1 +1,1 @@
-En esta carpeta incluir los controllers relacionados con trayectos_usuarios. Crear un index que en el que converjan todos.
+En esta carpeta incluir los controllers relacionados con trayectos. Crear un index que en el que converjan todos.

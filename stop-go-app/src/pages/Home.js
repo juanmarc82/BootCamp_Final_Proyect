@@ -10,7 +10,7 @@ import BackgroundImage from "../images/background-prueba.jpg";
 
 export class Home extends Component {
   render() {
-    return (
+   return (
       <div className="Home-wrapper">
         <MenuNav />
         <div className="Background-image-home">

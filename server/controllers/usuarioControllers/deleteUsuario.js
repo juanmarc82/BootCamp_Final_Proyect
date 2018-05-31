@@ -1,4 +1,4 @@
-import repo from '../repositorio/'
+import repo from '../../repositorio/'
 
 export default(function (req, res) {
     
@@ -8,7 +8,6 @@ export default(function (req, res) {
         res.send(JSON.stringify(results))
     }).catch(results=>{
 
-        console.error("CATCH!!! DELETE USUARIO")
         //Asignar response
         res.setHeader('Content-Type', 'application/json')
         res.status(500);

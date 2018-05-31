@@ -9,10 +9,11 @@ let selectUsuario = function(req, res) {
     email: req.body.email,
     password: req.body.password
   };
-
+ console.log(usuario);
+ 
   return new Promise((resolve, reject) => {
     var sess = req.session;
-
+    console.log(req.body.email)
     mysql.connection.query(
       `SELECT * FROM usuarios WHERE email= '${usuario.email}' AND password= '${
         usuario.password
@@ -25,9 +26,14 @@ let selectUsuario = function(req, res) {
 
           reject(error);
         } else {
+
+          req.session.userId = JSON.stringify(results[0]);
+          req.session.user = JSON.stringify(results[0]);
+          // req.session.user = results[0].nombre; //set user name
+
           console.log("El resultado es :", results);
-          req.session.userId = JSON.stringify(results[0].usuarioID);
-          req.session.user = results[0].nombre; //set user name
+          console.log( JSON.stringify(results))
+          
 
           console.log("La req.session.user es .... " + req.session.user);
           console.log("La user es .... " + req.session.userId);
@@ -41,14 +47,20 @@ let selectUsuario = function(req, res) {
 let addUsuario = function(req, res) {
   let usuario = {
     nombre: req.body.nombre,
+    apellidos: req.body.apellidos,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    nie: req.body.nie
   };
   return new Promise((resolve, reject) => {
     mysql.connection.query(
-      `INSERT INTO usuarios (nombre, email, password) VALUES('${
+      `INSERT INTO usuarios (nombre, apellidos, email, password, nie) VALUES('${
         usuario.nombre
-      }', '${usuario.email}', '${usuario.password}')`,
+      }', '${
+        usuario.apellidos
+      }', '${usuario.email}', '${usuario.password}', '${
+        usuario.nie
+      }')`,
       function(error, results, fields) {
         if (error) {
           console.log("my error ", error);
@@ -110,8 +122,10 @@ let updateUsuario = function(req, res) {
     foto: req.body.foto,
     conductor: req.body.conductor,
     nie: req.body.nie,
+    sobreMi: req.body.sobreMi,
     email: req.body.email,
     password: req.body.password
+
   };
   return new Promise((resolve, reject) => {
     mysql.connection.query(
@@ -121,7 +135,7 @@ let updateUsuario = function(req, res) {
         usuario.apellidos
       }',telefono='${usuario.telefono}', foto='${usuario.foto}', conductor='${
         usuario.conductor
-      }', nie='${usuario.nie}' WHERE usuarioID='${usuario.id}'`,
+      }', nie='${usuario.nie}', sobreMi='${usuario.sobreMi}' WHERE usuarioID='${usuario.id}'`,
       function(error, results, fields) {
         if (error) {
           console.log("my error ", error);
@@ -142,8 +156,9 @@ let updateUsuario = function(req, res) {
             foto: usuario.foto,
             conductor: usuario.conductor,
             nie: usuario.nie,
+            sobreMi: usuario.sobreMi,
             email: usuario.email,
-            password: usuario.password
+            password: usuario.password            
           };
           resolve(results);
         }
@@ -152,14 +167,52 @@ let updateUsuario = function(req, res) {
   });
 };
 
+// Query añadir trayecto
+
+let addTrayecto = function(req, res) {
+  let trayecto = {
+    usuarioConductorID: req.body.usuarioConductorID,
+    lugarComienzo: req.body.lugarComienzo,
+    horaComienzo: req.body.horaComienzo
+  };
+  return new Promise((resolve, reject) => {
+    mysql.connection.query(
+      `INSERT INTO trayectos_usuarios (usuarioConductorID, lugarComienzo, horaComienzo) VALUES('${
+        trayecto.usuarioConductorID
+      }', '${trayecto.lugarComienzo}', '${trayecto.horaComienzo}')`,
+      function(error, results, fields) {
+        if (error) {
+          console.log("my error ", error);
+          var results = {
+            error: error
+          };
+
+          reject(results);
+        } else {
+          console.log("The result: ", JSON.stringify(results));
+
+          var results = {
+            error: null,
+            TrayectoID: results.insertId,
+            usuarioConductorID: results.usuarioConductorID,
+            lugarComienzo: results.lugarComienzo,
+            horaComienzo: results.horaComienzo
+          };
+          resolve(results);
+        }
+      }
+    );
+  });
+};
+
+//Añadir los trayectos.
+
 module.exports = {
   selectUsuario,
   addUsuario,
   deleteUsuario,
-  updateUsuario
+  updateUsuario,
+  addTrayecto
 };
-/*
-exports.selectUsuario = selectUsuario;
-exports.addUsuario = addUsuario;
-exports.deleteUsuario = deleteUsuario;
-exports.updateUsuario = updateUsuario;*/
+
+

@@ -10,17 +10,26 @@ var connection = mysql.connection
 
 
 console.log("controller", JSON.stringify(controller))
-// En la URL /api/usuario, usamos en controlador usuario. || Select de un usuario
+
+// Rutas CRUD Usuario
+// Seleccionar un usuario || lOGIN
 router.post('/user/select', controller.selectUsuario);
-
-// En api/usuario/addUsuario llamamos al controlador addUsuario
+// Añadir Usuario || SIGN IN || REGISTRO
 router.post("/user/add", controller.addUsuario);
-
 // Borrar usuario
 router.post('/user/delete', controller.deleteUsuario);
-
-// Esta peticion es PUT. Update usuario
+// Update usuario
 router.put("/user/update", controller.updateUsuario);
+
+// Rutas CRUD Trayecto
+// Seleccionar Trayectos
+//router.post('/trip/select', controller.selectTrayecto);
+// Añadir Trayecto
+router.post("/trip/add", controller.addTrayecto);
+// Borrar Trayecto
+//router.post('/trip/delete', controller.deleteTrayecto);
+// Update Trayecto
+//router.put("/trip/update", controller.updateTrayecto);
 
 
 module.exports = router;

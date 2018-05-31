@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { Redirect } from 'react-router';
+// import ReactDOM from "react-dom";
+import { Redirect } from "react-router";
 /*** Components Semantic ***/
 import { Button, Form, Segment } from "semantic-ui-react";
 
@@ -10,8 +10,9 @@ export class FormLogin extends Component {
     this.state = {
       email: "",
       password: "",
-      UserName: ""
-    };
+      UserName: "",
+      loggedIn: false
+    }
   }
 
   _handleChange = e => {
@@ -38,39 +39,70 @@ export class FormLogin extends Component {
       .then(res => res.json())
       .then(results => {
         console.log(results);
-        // Añado redirect to "/" (home)
+        
+       this.setState({UserName: results.usuario[0].nombre })
+        localStorage.setItem("usuario", JSON.stringify(results.usuario))
+       // Añado redirect to "/" (home)
         if (results) {
-          ReactDOM.render(
-            <Redirect to='/' />
-          );
-}
-                });
+          localStorage.setItem("loggedIn" , true );
+          this.setState({
+            loggedIn: true
+          })
+        }
+      });
   };
-s
+  s;
   render() {
-    return <div className="Login-wrapper" >
+    if( this.state.loggedIn === true ){
+     return  <Redirect to="/" />
+    }
+    return (
+      <div className="Login-wrapper">
         <div className="Login-form">
-          {/* <img src={BackgroundImage} className="Background-image-login" alt="BackgroundImage-Logins" /> */}
-
           <Segment.Group>
             <Segment inverted color="grey" size="tiny" raised>
               <Form onSubmit={this._handleSubmit}>
-                <Segment textAlign="center" inverted color="blue" size="tiny" raised>
+                <Segment
+                  textAlign="center"
+                  inverted
+                  color="blue"
+                  size="tiny"
+                  raised
+                >
                   Inicia Sesión
                 </Segment>
                 <Form.Group widths="equal">
-                  <Form.Input fluid className="inputEmail" name="email" label="email" onChange={this._handleChange} placeholder="Tu email" type="email" />
+                  <Form.Input
+                    fluid
+                    className="inputEmail"
+                    name="email"
+                    label="email"
+                    onChange={this._handleChange}
+                    placeholder="Tu email"
+                    type="email"
+                    required
+                  />
                 </Form.Group>
                 <Form.Group widths="equal">
-                  <Form.Input fluid className="inputPassword" label="password" name="password" onChange={this._handleChange} placeholder="Tu password" type="password" />
+                  <Form.Input
+                    fluid
+                    className="inputPassword"
+                    label="password"
+                    name="password"
+                    onChange={this._handleChange}
+                    placeholder="Tu password"
+                    type="password"
+                    required
+                  />
                 </Form.Group>
-                <Button type="submit" color="green">
+                <Button type="submit" color="green" >
                   Log In
                 </Button>
               </Form>
             </Segment>
           </Segment.Group>
         </div>
-      </div>;
+      </div>
+    );
   }
 }

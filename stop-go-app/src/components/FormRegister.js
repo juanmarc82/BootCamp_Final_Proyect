@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// import ReactDOM from "react-dom";
+import { Redirect } from "react-router";
 /*** Components Semantic ***/
 import { Button, Form, Segment } from "semantic-ui-react";
 
@@ -11,7 +13,8 @@ export class FormRegister extends Component {
       password2:"",
       nombre: "",
       apellidos:"",
-      nie:""
+      nie:"",
+      registeredOk: false
     };
   }
 
@@ -36,13 +39,19 @@ export class FormRegister extends Component {
             email: this.state.email,
             password: this.state.password,
             nombre: this.state.nombre,
-            apellidos: this.state.lastName,
+            apellidos: this.state.apellidos,
             nie: this.state.nie
         })
         })
         .then(res => res.json())
         .then(results => {
             console.log(results);
+            if (results) {
+              localStorage.setItem("registeredOk" , true );
+              this.setState({
+                registeredOk: true
+              })
+            }
         });
     } else alert("Quillo, comprueba las contraseñas");
     // Vaciar inputs al submit
@@ -57,6 +66,9 @@ export class FormRegister extends Component {
   };
 
   render() {
+    if( this.state.registeredOk === true ){
+      return  <Redirect to="/" />
+     }
     return (
       <div className='Register-wrapper'>
       <div className='Register-form'>

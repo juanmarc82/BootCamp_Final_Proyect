@@ -1,13 +1,8 @@
-import repo from '../repositorio/'
+import repo from '../../repositorio/'
 
 export default (function (req, res) {
-    
-    // var usuario = { 
-    //     nombre: req.body.nombre,
-    //     email: req.body.email, 
-    //     password: req.body.password };
-   
-    repo.addUsuario(req).then(results=> {
+ 
+    repo.addUsuario(req, res).then(results=> {
 
         //Asignar response
         res.setHeader('Content-Type', 'application/json');
