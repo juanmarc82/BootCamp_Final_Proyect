@@ -48,7 +48,7 @@ export class Trip extends Component {
             <Table.HeaderCell colSpan="4">
               <Button animated floated="right" color="green">
                 <Button.Content visible>Eliminar</Button.Content>
-                <Button.Content hidden>
+                <Button.Content hidden onClick={this.props._handleDeleteTrip}>
                   <Icon name="delete" inverted color="red" />
                 </Button.Content>
               </Button>

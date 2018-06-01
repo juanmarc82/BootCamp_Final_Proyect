@@ -28,7 +28,7 @@ router.post('/trip/select', controller.selectTrayectos);
 // Añadir Trayecto
 router.post("/trip/add", controller.addTrayecto);
 // Borrar Trayecto
-//router.post('/trip/delete', controller.deleteTrayecto);
+router.post('/trip/delete', controller.deleteTrayecto);
 // Update Trayecto
 //router.put("/trip/update", controller.updateTrayecto);
 

@@ -229,6 +229,31 @@ let addTrayecto = function(req, res) {
   });
 };
 
+// Delete Trayecto
+let deleteTrayecto = function(id) {
+  return new Promise((resolve, reject) => {
+    console.error("Borrando trayecto");
+    mysql.connection.query(
+      `DELETE FROM trayectos_usuarios WHERE trayectoID=${id}`,
+      function(error, results, fields) {
+        if (error) {
+          console.log("my error ", error);
+          var results = {
+            error: error
+          };
+          reject(results);
+        } else {
+          var results = {
+            error: null,
+            id: id
+          };
+          resolve(results);
+        }
+      }
+    );
+  });
+};
+
 //Añadir los trayectos.
 
 module.exports = {
@@ -237,5 +262,6 @@ module.exports = {
   deleteUsuario,
   updateUsuario,
   selectTrayectos,
-  addTrayecto
+  addTrayecto,
+  deleteTrayecto
 };

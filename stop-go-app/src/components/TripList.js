@@ -8,17 +8,40 @@ export class TripList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: JSON.parse(localStorage.trayectos)
+      trips: JSON.parse(localStorage.trayectos),
+      trayectoDelete: false
     };
   }
   static propTypes = {
     trips: PropTypes.array
   };
+  _handleDeleteTrip = e => {
+    e.preventDefault();
+    // Modificar para UPDATE USER
+    fetch(`http://localhost:3001/api/trip/delete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.props.id
+      })
+    })
+      .then(res => res.json())
+      .then(results => {
+        console.log(results);
+        // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
+        if (results) {
+          this.setState({
+            trayectoDelete: true
+          });
+        }
+        // alert Add Viaje ok.
+        alert(" Viaje Eliminado Madafaca!! ");
+      })
+  }
 
   render() {
-    debugger;
-    const { trips } = this.state;
-    debugger;
+        const { trips } = this.state;
+    
     return (
       <div className="TripList">
         {trips.trayectos.map(trayectos => {
@@ -31,6 +54,7 @@ export class TripList extends Component {
               lugarFinal={trayectos.lugarFinal}
               horaComienzo={trayectos.horaComienzo}
               plazasLibres={trayectos.plazasLibres}
+              onClick={this._handleDeleteTrip}
               />
             </div>
           );
