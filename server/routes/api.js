@@ -22,8 +22,9 @@ router.post('/user/delete', controller.deleteUsuario);
 router.put("/user/update", controller.updateUsuario);
 
 // Rutas CRUD Trayecto
+
 // Seleccionar Trayectos
-//router.post('/trip/select', controller.selectTrayecto);
+router.post('/trip/select', controller.selectTrayectos);
 // Añadir Trayecto
 router.post("/trip/add", controller.addTrayecto);
 // Borrar Trayecto

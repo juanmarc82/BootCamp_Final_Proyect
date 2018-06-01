@@ -29,7 +29,6 @@ export class IsLoggedIn extends Component {
     this.setState({
       loggedIn: false
     });
-    console.log("Estoy cerrando sesion");
   };
 }
 export const ButtonsIsLoggedIn = () => (

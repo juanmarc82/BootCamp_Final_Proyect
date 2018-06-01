@@ -8,7 +8,7 @@ export default (function (req, res) {
         //Asignar response
         res.setHeader('Content-Type', 'application/json')
         res.send(JSON.stringify({'usuario':results})) 
-        res.send(console.log("Respuesta del servidor al SELECT"))   
+        res.send(console.log("Respuesta del servidor al SELECT Usuario"))   
 
     }).catch(function(error){
 

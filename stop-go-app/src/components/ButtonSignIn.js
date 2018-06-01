@@ -9,6 +9,11 @@ export class ButtonSignIn extends Component {
     this.state = {};
   }
 
+  _handleCloseSession = e => {
+    // localStorage.setItem("trayectos", JSON.stringify(results));
+    // localStorage.clear();
+  }
+
   render() {
    let nombreUsuario = JSON.parse(localStorage.usuario)[0].nombre;
     return (
@@ -34,7 +39,7 @@ export class ButtonSignIn extends Component {
               </MenuItem>
               <MenuItem divider />
               <MenuItem  className="CerrarSesion" eventKey={3.4} onClick={this.props.onClick}>
-                Cerrar Sesión
+              <Link to={`/`} onClick={this._handleCloseSession} >Cerrar Sesión</Link>
               </MenuItem>
             </NavDropdown>
           </NavItem>

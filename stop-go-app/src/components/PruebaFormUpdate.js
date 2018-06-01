@@ -1,80 +1,89 @@
 import React, { Component } from "react";
-// // import ReactDOM from "react-dom";
-// import { Redirect } from "react-router";
-/*** Components Semantic ***/
+
+// Components
+
+//import { Link } from "react-router-dom";
+
 import { Form } from "semantic-ui-react";
 
-
-export class Perfil extends Component {
+export class PruebaFormUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: localStorage.usuario[0].id,
-      email: localStorage.usuario[0].email,
-      password: localStorage.usuario[0].password,
+      id: JSON.parse(localStorage.usuario)[0].usuarioID,
+      email: JSON.parse(localStorage.usuario)[0].email,
+      password: JSON.parse(localStorage.usuario)[0].password,
       password2: "",
-      nombre: localStorage.usuario[0].nombre,
-      apellidos: localStorage.usuario[0].apellidos,
-      nie: localStorage.usuario[0].nie,
-      telefono: localStorage.usuario[0].telefono,
-      conductor: localStorage.usuario[0].conductor,
-      sobreMi: localStorage.usuario[0].sobreMi,
-      foto: localStorage.usuario[0].foto,
-      loggedIn: false
+      nombre: JSON.parse(localStorage.usuario)[0].nombre,
+      apellidos: JSON.parse(localStorage.usuario)[0].apellidos,
+      nie: JSON.parse(localStorage.usuario)[0].nie,
+      telefono: JSON.parse(localStorage.usuario)[0].telefono,
+      conductor: JSON.parse(localStorage.usuario)[0].conductor,
+      sobreMi: JSON.parse(localStorage.usuario)[0].sobreMi,
+      foto: JSON.parse(localStorage.usuario)[0].foto,
     };
   }
+
+  componentDidMount() {}
+
+  _handleChangeImage = e => {
+    const file = e.target.files[0];
+    // const value = target.value;
+    // const name = target.name;
+    console.log(file);
+  };
 
   _handleChange = e => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
     console.log(target);
+    console.log(e);
+
     console.log(value);
-    console.log(name);
+    // console.log(name);
     this.setState({ [name]: value });
   };
 
-//   _handleSubmit = e => {
-//     e.preventDefault();
+  _handleSubmit = e => {
+    e.preventDefault();
+    // Modificar para UPDATE USER
+    fetch(`http://localhost:3001/api/user/update`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.state.id,
+        nombre: this.state.nombre,
+        apellidos: this.state.apellidos,
+        telefono: this.state.telefono,
+        foto: this.state.foto,
+        conductor: this.state.conductor,
+        sobreMi: this.state.sobreMi,
+        nie: this.state.nie,
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(results => {
+        console.log(results);
+        alert(" Perfil modificado ")
+      });
+  };
 
-//     fetch(`http://localhost:3001/api/user/select`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         email: this.state.email,
-//         password: this.state.password
-//       })
-//     })
-//       .then(res => res.json())
-//       .then(results => {
-//         this.setState({ UserName: results.usuario[0].nombre });
-//         localStorage.setItem("usuario", JSON.stringify(results.usuario));
-//         // Añado redirect to "/" (home)
-//         if (results) {
-//           localStorage.setItem("loggedIn", true);
-//           this.setState({
-//             loggedIn: true
-//           });
-//         }
-//       });
-//   };
-  
   render() {
-    let nombre = JSON.parse(localStorage.usuario)[0].nombre;
-    let apellidos = JSON.parse(localStorage.usuario)[0].apellidos;
-    let telefono = JSON.parse(localStorage.usuario)[0].telefono;
-    let foto = JSON.parse(localStorage.usuario)[0].foto;
-    let conductor = JSON.parse(localStorage.usuario)[0].conductor;
-    let nie = JSON.parse(localStorage.usuario)[0].nie;
-    let sobreMi = JSON.parse(localStorage.usuario)[0].sobreMi;
-    let email = JSON.parse(localStorage.usuario)[0].email;
-    let password = JSON.parse(localStorage.usuario)[0].password;
-    let fechaRegistroUsuario = JSON.parse(localStorage.usuario)[0].f_registro;
-    if (this.state.loggedIn === true) {
-      return <Redirect to="/" />;
-    }
+    let nombre = this.state.nombre;
+    let apellidos = this.state.apellidos;
+    let telefono = this.state.telefono;
+    let foto = this.state.foto;
+    // let conductor = this.state.conductor;  
+    let nie = this.state.nie;
+    let sobreMi = this.state.sobreMi;
+    let email = this.state.email;
+    let password = this.state.password;
+
     return (
-      <div className="Login-wrapper">
+      <div className="FormUpdateUsuario-wrapper">
         <Form onSubmit={this._handleSubmit} enctype="multipart/form-data">
           <Form.Group widths="equal">
             <Form.Input
@@ -84,7 +93,7 @@ export class Perfil extends Component {
               placeholder="Nombre"
               onChange={this._handleChange}
               type="text"
-              // value={nombre}
+              value={nombre}
             />
             <Form.Input
               fluid
@@ -93,7 +102,7 @@ export class Perfil extends Component {
               onChange={this._handleChange}
               placeholder="Apellidos"
               type="text"
-              // value={apellidos}
+              value={apellidos}
             />
           </Form.Group>
           <Form.Group widths="equal">
@@ -150,14 +159,14 @@ export class Perfil extends Component {
           </Form.Group>
           <Form.Group widths="equal">
             {/* <Form.Select
-                  fluid
-                  name="conductor"
-                  label="Conductor"
-                  onChange={this._handleChange}
-                  options={optionsConductor}
-                  placeholder="si"
-                  // value={conductor}
-                /> */}
+        fluid
+        name="conductor"
+        label="Conductor"
+        onChange={this._handleChange}
+        options={optionsConductor}
+        placeholder="si"
+        // value={conductor}
+      /> */}
             <div class="form-group">
               <label for="exampleFormControlSelect1">Conductor</label>
               <select

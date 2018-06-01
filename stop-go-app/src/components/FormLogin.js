@@ -10,9 +10,10 @@ export class FormLogin extends Component {
     this.state = {
       email: "",
       password: "",
-      UserName: "",
-      loggedIn: false
-    }
+      nombre: "",
+      loggedIn: false,
+      trayectos: []
+    };
   }
 
   _handleChange = e => {
@@ -28,6 +29,7 @@ export class FormLogin extends Component {
   _handleSubmit = e => {
     e.preventDefault();
 
+    // Petición Usuario logeado
     fetch(`http://localhost:3001/api/user/select`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,22 +41,37 @@ export class FormLogin extends Component {
       .then(res => res.json())
       .then(results => {
         console.log(results);
-        
-       this.setState({UserName: results.usuario[0].nombre })
-        localStorage.setItem("usuario", JSON.stringify(results.usuario))
-       // Añado redirect to "/" (home)
+
+        this.setState({ nombre: results.usuario[0].nombre });
+        localStorage.setItem("usuario", JSON.stringify(results.usuario));
+        // Añado redirect to "/" (home)
         if (results) {
-          localStorage.setItem("loggedIn" , true );
+          localStorage.setItem("loggedIn", true);
           this.setState({
             loggedIn: true
-          })
+          });
         }
       });
+    // Si hay results => Petición Trayectos Usuario logeado
+    fetch(`http://localhost:3001/api/trip/select`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
+      })
+    })
+      .then(res => res.json())
+      .then(results => {
+        console.log(results);
+
+        this.setState({ trayectos: results.trayectos[0] });
+        localStorage.setItem("trayectos", JSON.stringify(results));
+      });
   };
-  s;
+
   render() {
-    if( this.state.loggedIn === true ){
-     return  <Redirect to="/" />
+    if (this.state.loggedIn === true) {
+      return <Redirect to="/" />;
     }
     return (
       <div className="Login-wrapper">
@@ -95,7 +112,7 @@ export class FormLogin extends Component {
                     required
                   />
                 </Form.Group>
-                <Button type="submit" color="green" >
+                <Button type="submit" color="green">
                   Log In
                 </Button>
               </Form>

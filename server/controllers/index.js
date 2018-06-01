@@ -8,7 +8,7 @@ import deleteUsuario from "./usuarioControllers/deleteUsuario";
 import updateUsuario from "./usuarioControllers/updateUsuario";
 
 //Importamos selectTrayecto
-import selectTrayecto from './trayectoControllers/selectTrayecto'
+import selectTrayectos from './trayectoControllers/selectTrayectos'
 //Importamos addTrayecto
 import addTrayecto from './trayectoControllers/addTrayecto'
 //Importamos deleteTrayecto
@@ -20,6 +20,6 @@ import updateTrayecto from "./trayectoControllers/updateTrayecto";
 
 // Asignamos a los exports las funciones que hemos importado
 
-module.exports = { selectUsuario, addUsuario, deleteUsuario, updateUsuario, addTrayecto }
+module.exports = { selectUsuario, addUsuario, deleteUsuario, updateUsuario, selectTrayectos, addTrayecto }
 
 // selectTrayecto, deleteTrayecto, updateTrayecto

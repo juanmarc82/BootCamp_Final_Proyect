@@ -9,11 +9,11 @@ let selectUsuario = function(req, res) {
     email: req.body.email,
     password: req.body.password
   };
- console.log(usuario);
- 
+  console.log(usuario);
+
   return new Promise((resolve, reject) => {
     var sess = req.session;
-    console.log(req.body.email)
+    console.log(req.body.email);
     mysql.connection.query(
       `SELECT * FROM usuarios WHERE email= '${usuario.email}' AND password= '${
         usuario.password
@@ -26,17 +26,8 @@ let selectUsuario = function(req, res) {
 
           reject(error);
         } else {
-
           req.session.userId = JSON.stringify(results[0]);
           req.session.user = JSON.stringify(results[0]);
-          // req.session.user = results[0].nombre; //set user name
-
-          console.log("El resultado es :", results);
-          console.log( JSON.stringify(results))
-          
-
-          console.log("La req.session.user es .... " + req.session.user);
-          console.log("La user es .... " + req.session.userId);
 
           resolve(results);
         }
@@ -44,6 +35,7 @@ let selectUsuario = function(req, res) {
     );
   });
 };
+
 let addUsuario = function(req, res) {
   let usuario = {
     nombre: req.body.nombre,
@@ -56,9 +48,7 @@ let addUsuario = function(req, res) {
     mysql.connection.query(
       `INSERT INTO usuarios (nombre, apellidos, email, password, nie) VALUES('${
         usuario.nombre
-      }', '${
-        usuario.apellidos
-      }', '${usuario.email}', '${usuario.password}', '${
+      }', '${usuario.apellidos}', '${usuario.email}', '${usuario.password}', '${
         usuario.nie
       }')`,
       function(error, results, fields) {
@@ -125,7 +115,6 @@ let updateUsuario = function(req, res) {
     sobreMi: req.body.sobreMi,
     email: req.body.email,
     password: req.body.password
-
   };
   return new Promise((resolve, reject) => {
     mysql.connection.query(
@@ -135,7 +124,9 @@ let updateUsuario = function(req, res) {
         usuario.apellidos
       }',telefono='${usuario.telefono}', foto='${usuario.foto}', conductor='${
         usuario.conductor
-      }', nie='${usuario.nie}', sobreMi='${usuario.sobreMi}' WHERE usuarioID='${usuario.id}'`,
+      }', nie='${usuario.nie}', sobreMi='${usuario.sobreMi}' WHERE usuarioID='${
+        usuario.id
+      }'`,
       function(error, results, fields) {
         if (error) {
           console.log("my error ", error);
@@ -158,7 +149,7 @@ let updateUsuario = function(req, res) {
             nie: usuario.nie,
             sobreMi: usuario.sobreMi,
             email: usuario.email,
-            password: usuario.password            
+            password: usuario.password
           };
           resolve(results);
         }
@@ -167,19 +158,49 @@ let updateUsuario = function(req, res) {
   });
 };
 
-// Query añadir trayecto
+// Select todos los trayectos de un usuario
+let selectTrayectos = function(req, res) {
+  let trayectos = {
+    usuarioConductorID: req.body.usuarioConductorID
+  };
+  console.log(trayectos);
 
+  return new Promise((resolve, reject) => {
+    console.log(req.body.id);
+    mysql.connection.query(
+      `SELECT * FROM trayectos_usuarios WHERE usuarioConductorID= '${
+        trayectos.usuarioConductorID
+      }'`,
+      function(error, results, fields) {
+        if (error) {
+          let results = {
+            error: error
+          };
+          reject(error);
+        } else {
+          console.log("El resultado es :", results);
+          console.log(JSON.stringify(results));
+          resolve(results);
+        }
+      }
+    );
+  });
+};
+
+// Query añadir trayecto
 let addTrayecto = function(req, res) {
   let trayecto = {
     usuarioConductorID: req.body.usuarioConductorID,
     lugarComienzo: req.body.lugarComienzo,
-    horaComienzo: req.body.horaComienzo
+    lugarFinal: req.body.lugarFinal,
+    horaComienzo: req.body.horaComienzo,
+    plazasLibres: req.body.plazasLibres     
   };
   return new Promise((resolve, reject) => {
     mysql.connection.query(
-      `INSERT INTO trayectos_usuarios (usuarioConductorID, lugarComienzo, horaComienzo) VALUES('${
+      `INSERT INTO trayectos_usuarios (usuarioConductorID, lugarComienzo, lugarFinal, horaComienzo, plazasLibres) VALUES('${
         trayecto.usuarioConductorID
-      }', '${trayecto.lugarComienzo}', '${trayecto.horaComienzo}')`,
+      }', '${trayecto.lugarComienzo}', '${trayecto.lugarFinal}', '${trayecto.horaComienzo}', '${trayecto.plazasLibres}')`,
       function(error, results, fields) {
         if (error) {
           console.log("my error ", error);
@@ -189,15 +210,18 @@ let addTrayecto = function(req, res) {
 
           reject(results);
         } else {
-          console.log("The result: ", JSON.stringify(results));
-
+         
           var results = {
             error: null,
             TrayectoID: results.insertId,
             usuarioConductorID: results.usuarioConductorID,
             lugarComienzo: results.lugarComienzo,
-            horaComienzo: results.horaComienzo
+            lugarFinal: results.lugarFinal,
+            horaComienzo: results.horaComienzo,
+            plazasLibres: results.plazasLibres
           };
+          console.log("The result: ", JSON.stringify(results));
+
           resolve(results);
         }
       }
@@ -212,7 +236,6 @@ module.exports = {
   addUsuario,
   deleteUsuario,
   updateUsuario,
+  selectTrayectos,
   addTrayecto
 };
-
-
