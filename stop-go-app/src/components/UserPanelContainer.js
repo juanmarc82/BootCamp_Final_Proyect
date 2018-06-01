@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // Components
 import img_prueba from "../images/Stopgo-imagen-prueba.png";
-import PruebaTab from "./PruebaTab";
+import UsuarioPanelTab from "./UsuarioPanelTab";
 
 //import { Link } from "react-router-dom";
 
@@ -119,7 +119,7 @@ export class UserPanelContainer extends Component {
       <div className="UserPanel-Container">
       <Grid columns={2} centered>
       <Grid.Column >
-      <PruebaTab />
+      <UsuarioPanelTab />
       </Grid.Column>
        </Grid >
       </div>

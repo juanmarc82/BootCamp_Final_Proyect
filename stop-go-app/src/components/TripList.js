@@ -5,22 +5,32 @@ import PropTypes from "prop-types";
 import { Trip } from "./Trip";
 
 export class TripList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trips: JSON.parse(localStorage.trayectos)
+    };
+  }
   static propTypes = {
     trips: PropTypes.array
   };
 
   render() {
-    const { trips } = this.props;
+    debugger;
+    const { trips } = this.state;
+    debugger;
     return (
       <div className="TripList">
-        {trips.map(trip => {
+        {trips.trayectos.map(trayectos => {
           return (
-            <div key={trip.TripId} className="TripList-item">
-              <Trip
-                id={trip.TripId}
-                userId={trip.UserId}
-                StartTime={trip.StartTime}
-                StartPlace={trip.StartPlace}                
+            <div key={trayectos.trayectoID} className="TripList-item">
+              <Trip 
+              id={trayectos.trayectoID}
+              usuarioConductorID={trayectos.usuarioConductorID}
+              lugarComienzo={trayectos.lugarComienzo}
+              lugarFinal={trayectos.lugarFinal}
+              horaComienzo={trayectos.horaComienzo}
+              plazasLibres={trayectos.plazasLibres}
               />
             </div>
           );

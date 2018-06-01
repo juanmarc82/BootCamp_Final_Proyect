@@ -75,9 +75,7 @@ export class FormPublicarViaje extends Component {
   };
 
   render() {
-    if (this.state.trayectoAdd === true) {
-      return <Redirect to="/panelUsuario" />;
-    }
+ 
 
     let lugarComienzo = this.state.lugarComienzo;
     let lugarFinal = this.state.lugarFinal;

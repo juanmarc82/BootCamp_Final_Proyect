@@ -15,6 +15,8 @@ export class Home extends Component {
         <MenuNav />
         <div className="Background-image-home">
           <Image src={BackgroundImage} />
+          <h1>!Para y Vamos!</h1>
+          <h4>Porque compartir es importante...</h4>
         </div>
         <Footer />
       </div>
