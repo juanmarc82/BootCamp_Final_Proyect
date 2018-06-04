@@ -23,7 +23,7 @@ router.put("/user/update", controller.updateUsuario);
 
 // Rutas CRUD Trayecto
 
-// Seleccionar Trayectos
+// Seleccionar todos Trayectos de un Usuario
 router.post('/trip/select', controller.selectTrayectos);
 // Añadir Trayecto
 router.post("/trip/add", controller.addTrayecto);
@@ -31,6 +31,8 @@ router.post("/trip/add", controller.addTrayecto);
 router.post('/trip/delete', controller.deleteTrayecto);
 // Update Trayecto
 //router.put("/trip/update", controller.updateTrayecto);
+// Buscar Trayectos con filtros.
+router.post('/trip/search', controller.searchTrayectos);
 
 
 module.exports = router;

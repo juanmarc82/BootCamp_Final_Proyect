@@ -11,6 +11,7 @@ export class FormLogin extends Component {
       email: "",
       password: "",
       nombre: "",
+      usuarioConductorID: "",
       loggedIn: false,
       trayectos: []
     };
@@ -42,7 +43,10 @@ export class FormLogin extends Component {
       .then(results => {
         console.log(results);
 
-        this.setState({ nombre: results.usuario[0].nombre });
+        this.setState({
+          nombre: results.usuario[0].nombre,
+          usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
+        });
         localStorage.setItem("usuario", JSON.stringify(results.usuario));
         // Añado redirect to "/" (home)
         if (results) {
@@ -58,6 +62,8 @@ export class FormLogin extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
+
+        // this.state.usuarioConductorID
       })
     })
       .then(res => res.json())
@@ -66,7 +72,6 @@ export class FormLogin extends Component {
 
         this.setState({ trayectos: results.trayectos[0] });
         localStorage.setItem("trayectos", JSON.stringify(results));
-
       });
   };
 

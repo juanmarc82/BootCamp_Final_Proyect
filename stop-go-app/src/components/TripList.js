@@ -22,7 +22,7 @@ export class TripList extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: this.props.id
+        TrayectoID: this.props.TrayectoID
       })
     })
       .then(res => res.json())
@@ -30,13 +30,11 @@ export class TripList extends Component {
         console.log(results);
         // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
         if (results) {
-          this.setState({
-            trayectoDelete: true
-          });
+          this.setState({ trayectoDelete: true });
         }
         // alert Add Viaje ok.
         alert(" Viaje Eliminado Madafaca!! ");
-      })
+      });
   }
 
   render() {

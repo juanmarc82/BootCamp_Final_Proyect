@@ -194,13 +194,15 @@ let addTrayecto = function(req, res) {
     lugarComienzo: req.body.lugarComienzo,
     lugarFinal: req.body.lugarFinal,
     horaComienzo: req.body.horaComienzo,
-    plazasLibres: req.body.plazasLibres     
+    plazasLibres: req.body.plazasLibres
   };
   return new Promise((resolve, reject) => {
     mysql.connection.query(
       `INSERT INTO trayectos_usuarios (usuarioConductorID, lugarComienzo, lugarFinal, horaComienzo, plazasLibres) VALUES('${
         trayecto.usuarioConductorID
-      }', '${trayecto.lugarComienzo}', '${trayecto.lugarFinal}', '${trayecto.horaComienzo}', '${trayecto.plazasLibres}')`,
+      }', '${trayecto.lugarComienzo}', '${trayecto.lugarFinal}', '${
+        trayecto.horaComienzo
+      }', '${trayecto.plazasLibres}')`,
       function(error, results, fields) {
         if (error) {
           console.log("my error ", error);
@@ -210,7 +212,6 @@ let addTrayecto = function(req, res) {
 
           reject(results);
         } else {
-         
           var results = {
             error: null,
             TrayectoID: results.insertId,
@@ -254,6 +255,51 @@ let deleteTrayecto = function(id) {
   });
 };
 
+// Search de trayectos por parámetros
+let searchTrayectos = function(req, res) {
+  let trayectos = {
+    lugarComienzo: req.body.lugarComienzo,
+    lugarFinal: req.body.lugarFinal,
+    horaComienzo: req.body.horaComienzo
+  };
+  console.log(trayectos);
+  // Check if parameters are filled
+  
+  if (trayectos.lugarComienzo) {
+    trayectos.lugarComienzo = "%" + trayectos.lugarComienzo + "%";
+  }
+  if (trayectos.lugarFinal) {
+    trayectos.lugarFinal = "%" + trayectos.lugarFinal + "%";
+  }
+  if (trayectos.horaComienzo) {
+    trayectos.horaComienzo = "%" + trayectos.horaComienzo + "%";
+  }
+
+  let querySearchTrayectos = `SELECT * FROM trayectos_usuarios 
+	WHERE lugarFinal LIKE '${trayectos.lugarFinal}' OR lugarComienzo LIKE '${
+    trayectos.lugarComienzo
+  }' OR horaComienzo LIKE '${trayectos.horaComienzo}' ORDER BY horaComienzo `;
+
+  return new Promise((resolve, reject) => {
+    console.log(req.body.id);
+    mysql.connection.query(querySearchTrayectos, function(
+      error,
+      results
+    ) {
+      if (error) {
+        let results = {
+          error: error
+        };
+        reject(error);
+      } else {
+        console.log("El resultado es :", results);
+        console.log(JSON.stringify(results));
+        resolve(results);
+      }
+    });
+  });
+};
+
 //Añadir los trayectos.
 
 module.exports = {
@@ -263,5 +309,6 @@ module.exports = {
   updateUsuario,
   selectTrayectos,
   addTrayecto,
-  deleteTrayecto
+  deleteTrayecto,
+  searchTrayectos
 };

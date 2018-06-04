@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Components
-import img_prueba from "../images/Stopgo-imagen-prueba.png";
+import img_prueba from "../images/user_default.jpg";
 
 //import { Link } from "react-router-dom";
 

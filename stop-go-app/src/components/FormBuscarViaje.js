@@ -5,16 +5,17 @@ import { Redirect } from "react-router";
 // Import Semantic Components;
 import { Form } from "semantic-ui-react";
 
-export class FormPublicarViaje extends Component {
+export class FormBuscarViaje extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID,
+      usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
       lugarComienzo: "",
       lugarFinal: "",
       horaComienzo: "",
       plazasLibres: "",
-      trayectoAdd: false
+      trayectoSearched: false,
+      trayectosArray: []
     };
   }
 
@@ -22,26 +23,24 @@ export class FormPublicarViaje extends Component {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    console.log(target);
-    console.log(e);
-
-    console.log(value);
-    // console.log(name);
+    console.log("El Target es: ", target);
+    console.log("El Evento es: ", e);
+    console.log("El Valor es: ", value);
     this.setState({ [name]: value });
   };
 
   _handleSubmit = e => {
     e.preventDefault();
+    console.log("El trayectoSearched antes del fetch esta en :", this.props.trayectoSearched);
+
     // Modificar para UPDATE USER
-    fetch(`http://localhost:3001/api/trip/add`, {
+    fetch(`http://localhost:3001/api/trip/search`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        usuarioConductorID: this.state.usuarioConductorID,
         lugarComienzo: this.state.lugarComienzo,
         lugarFinal: this.state.lugarFinal,
-        horaComienzo: this.state.horaComienzo,
-        plazasLibres: this.state.plazasLibres
+        horaComienzo: this.state.horaComienzo
       })
     })
       .then(res => res.json())
@@ -50,40 +49,37 @@ export class FormPublicarViaje extends Component {
         // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
         if (results) {
           this.setState({
-            trayectoAdd: true
+            trayectoSearched: true,
+            trayectosArray: results
           });
+          localStorage.setItem("listaTrayectos", results);
+          localStorage.setItem("trayectosSearched", true);
+          console.log(
+            "Esto está en this.state.trayectosArray: ",
+            this.state.trayectosArray
+          );
+          console.log("El trayectoSearched esta en :", this.state.trayectoSearched);
+          
+          // alert Add Viaje ok.
+          alert(" Viaje buscado Madafaca!! ");
         }
-        // alert Add Viaje ok.
-        alert(" Viaje Incluido Madafaca!! ");
-
-        // Actualizar trayectos
-        fetch(`http://localhost:3001/api/trip/select`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            usuarioConductorID: localStorage.usuario[0].usuarioConductorID
-          })
-        })
-          .then(res => res.json())
-          .then(results => {
-            console.log(results);
-            // Añado trayectos a setState y a localStorage
-            this.setState({ trayectos: results.trayectos[0] });
-            localStorage.setItem("trayectos", JSON.stringify(results));
-          });
       });
   };
 
   render() {
- 
+    // if (this.state.trayectoSearch === true ){
+    //   return (
+        
+    //   )
+    // }
 
     let lugarComienzo = this.state.lugarComienzo;
     let lugarFinal = this.state.lugarFinal;
     let horaComienzo = this.state.horaComienzo;
-    let plazasLibres = this.state.plazasLibres;
+    // let plazasLibres = this.state.plazasLibres;
 
     return (
-      <div className="FormPublicarViaje-wrapper">
+      <div className="FormBuscarViaje-wrapper">
         <Form onSubmit={this._handleSubmit}>
           <Form.Group widths="equal">
             <Form.Input
@@ -94,7 +90,6 @@ export class FormPublicarViaje extends Component {
               onChange={this._handleChange}
               type="text"
               value={lugarComienzo}
-              required
             />
             <Form.Input
               fluid
@@ -104,10 +99,9 @@ export class FormPublicarViaje extends Component {
               placeholder="Aquí la hora"
               type="text"
               value={horaComienzo}
-              required
             />
           </Form.Group>
-          <Form.Group widths="equal">
+          <Form.Group>
             <Form.Input
               fluid
               name="lugarFinal"
@@ -117,9 +111,8 @@ export class FormPublicarViaje extends Component {
               type="text"
               width={8}
               value={lugarFinal}
-              required
             />
-            <Form.Input
+            {/* <Form.Input
               fluid
               name="plazasLibres"
               label="¿ Cuántos cabemos?"
@@ -129,10 +122,10 @@ export class FormPublicarViaje extends Component {
               width={4}
               value={plazasLibres}
               required
-            />
+            /> */}
           </Form.Group>
 
-          <Form.Button>¡ Añade este viaje !</Form.Button>
+          <Form.Button>¡ Prueba Suerte !</Form.Button>
         </Form>
       </div>
     );

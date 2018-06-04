@@ -2,18 +2,11 @@ import React, { Component } from "react";
 
 // Components
 import img_prueba from "../images/Stopgo-imagen-prueba.png";
-import UsuarioPanelTab from "./UsuarioPanelTab";
+import UserPanelTab from "./UserPanelTab";
 
 //import { Link } from "react-router-dom";
 
-import { Grid, Image, Card, Form, Button, GridColumn } from "semantic-ui-react";
-
-// import {  } from "react-bootstrap";
-
-// const optionsConductor = [
-//   { key: "si", text: "Si", value: "si" },
-//   { key: "no", text: "No", value: "no" }
-// ];
+import { Grid } from "semantic-ui-react";
 
 export class UserPanelContainer extends Component {
   constructor(props) {
@@ -35,13 +28,6 @@ export class UserPanelContainer extends Component {
   }
 
   componentDidMount() {}
-
-  // _handleOnClickDriver = e => {
-  //   const target = e.target;
-  //   const value = target.value;
-  //   const name = target.name;
-  //   this.setState({ [name]: value });
-  // }
 
   _handleChangeImage = e => {
     const file = e.target.files[0];
@@ -119,7 +105,7 @@ export class UserPanelContainer extends Component {
       <div className="UserPanel-Container">
       <Grid columns={2} centered>
       <Grid.Column >
-      <UsuarioPanelTab />
+      <UserPanelTab />
       </Grid.Column>
        </Grid >
       </div>
