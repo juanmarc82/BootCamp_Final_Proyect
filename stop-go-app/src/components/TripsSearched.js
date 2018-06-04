@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 /*** Components Bootstrap ***/
 import { Table, Button, Icon } from "semantic-ui-react";
 
-export class Trip extends Component {
+export class TripsSearched extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioID: JSON.parse(localStorage.usuario)[0].usuarioID,
+      usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
       trayectoID: this.props.trayectoID
     };
   }
@@ -17,29 +17,30 @@ export class Trip extends Component {
     lugarComienzo: PropTypes.strings,
     lugarFinal: PropTypes.strings,
     horaComienzo: PropTypes.strings,
-    plazasLibres: PropTypes.number,
+    plazasLibres: PropTypes.strings,
     trayectoID: PropTypes.number
   };
-
-  _handleDeleteTrip = e => {
+  _handleSelectByUserTrip = e => {
     e.preventDefault();
-
-    fetch(`http://localhost:3001/api/trip/delete`, {
-      method: "POST",
+    fetch(`http://localhost:3001/api/trip/selectByUser`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: this.state.trayectoID
+        trayectoID: this.state.trayectoID,
+        usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
+        restarPlaza: 1
       })
     })
       .then(res => res.json())
       .then(results => {
         console.log(results);
+
         // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
         if (results) {
-          this.setState({ trayectoDelete: true });
+          this.setState({ trayectoSeleccionado: true });
         }
         // alert Add Viaje ok.
-        alert(" Viaje Eliminado Madafaca!! ");
+        alert(" Te has apuntado al Viaje Madafaca!! ");
       });
   };
 
@@ -51,6 +52,7 @@ export class Trip extends Component {
       plazasLibres,
       trayectoID
     } = this.props;
+    console.log(trayectoID);
 
     return (
       <Table striped stackable>
@@ -75,12 +77,13 @@ export class Trip extends Component {
           <Table.Row>
             <Table.HeaderCell colSpan="4">
               <Button
+                animated
                 floated="right"
-                color="red"
-                onClick={this._handleDeleteTrip}
+                color="green"
+                onClick={this._handleSelectByUserTrip}
                 trayectoID={trayectoID}
               >
-                <Button.Content visible>Eliminar</Button.Content>
+                <Button.Content visible>¡ Recógeme !</Button.Content>
               </Button>
             </Table.HeaderCell>
           </Table.Row>

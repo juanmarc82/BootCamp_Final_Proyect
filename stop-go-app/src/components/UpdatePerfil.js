@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // // import ReactDOM from "react-dom";
-// import { Redirect } from "react-router";
+ import { Redirect } from "react-router";
 /*** Components Semantic ***/
 import { Form } from "semantic-ui-react";
 
@@ -34,30 +34,6 @@ export class UpdatePerfil extends Component {
     this.setState({ [name]: value });
   };
 
-//   _handleSubmit = e => {
-//     e.preventDefault();
-
-//     fetch(`http://localhost:3001/api/user/select`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         email: this.state.email,
-//         password: this.state.password
-//       })
-//     })
-//       .then(res => res.json())
-//       .then(results => {
-//         this.setState({ UserName: results.usuario[0].nombre });
-//         localStorage.setItem("usuario", JSON.stringify(results.usuario));
-//         // Añado redirect to "/" (home)
-//         if (results) {
-//           localStorage.setItem("loggedIn", true);
-//           this.setState({
-//             loggedIn: true
-//           });
-//         }
-//       });
-//   };
   
   render() {
     let nombre = JSON.parse(localStorage.usuario)[0].nombre;

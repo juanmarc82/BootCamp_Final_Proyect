@@ -234,6 +234,7 @@ let addTrayecto = function(req, res) {
 let deleteTrayecto = function(id) {
   return new Promise((resolve, reject) => {
     console.error("Borrando trayecto");
+    console.log(id);
     mysql.connection.query(
       `DELETE FROM trayectos_usuarios WHERE trayectoID=${id}`,
       function(error, results, fields) {
@@ -264,7 +265,7 @@ let searchTrayectos = function(req, res) {
   };
   console.log(trayectos);
   // Check if parameters are filled
-  
+
   if (trayectos.lugarComienzo) {
     trayectos.lugarComienzo = "%" + trayectos.lugarComienzo + "%";
   }
@@ -282,10 +283,7 @@ let searchTrayectos = function(req, res) {
 
   return new Promise((resolve, reject) => {
     console.log(req.body.id);
-    mysql.connection.query(querySearchTrayectos, function(
-      error,
-      results
-    ) {
+    mysql.connection.query(querySearchTrayectos, function(error, results) {
       if (error) {
         let results = {
           error: error
@@ -299,6 +297,42 @@ let searchTrayectos = function(req, res) {
     });
   });
 };
+// Usuario añadirse a un viaje
+let selectTrayectoByUser = function(req, res) {
+  let trayecto = {
+    usuarioPasajeroID: req.body.usuarioPasajeroID,
+    trayectoID: req.body.trayectoID,
+    restarPlaza: req.body.restarPlaza
+  };
+  console.log("Parametros que llegan a trayecto :", trayecto);
+  
+  return new Promise((resolve, reject) => {
+    mysql.connection.query(
+      `UPDATE trayectos_usuarios SET usuarioPasajeroID = '${
+        trayecto.usuarioPasajeroID
+      }', plazasLibres = ( plazasLibres - '${
+        trayecto.restarPlaza
+      }') WHERE trayectoID = '${trayecto.trayectoID}'`,
+      function(error, results, fields) {
+        if (error) {
+          console.log("my error ", error);
+          var results = {
+            error: error
+          };
+
+          reject(results);
+        } else {
+          var results = {
+            error: null
+          };
+          console.log("The result: ", JSON.stringify(results));
+
+          resolve(results);
+        }
+      }
+    );
+  });
+};
 
 //Añadir los trayectos.
 
@@ -310,5 +344,6 @@ module.exports = {
   selectTrayectos,
   addTrayecto,
   deleteTrayecto,
-  searchTrayectos
+  searchTrayectos,
+  selectTrayectoByUser
 };

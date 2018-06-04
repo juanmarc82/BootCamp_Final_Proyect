@@ -5,6 +5,10 @@ import { Redirect } from "react-router";
 // Import Semantic Components;
 import { Form } from "semantic-ui-react";
 
+import { TripsSearchedList } from "./TripsSearchedList";
+
+// export let TripsSearchedArray = [];
+
 export class FormBuscarViaje extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +35,10 @@ export class FormBuscarViaje extends Component {
 
   _handleSubmit = e => {
     e.preventDefault();
-    console.log("El trayectoSearched antes del fetch esta en :", this.props.trayectoSearched);
-
+    console.log(
+      "El trayectoSearched antes del fetch esta en :",
+      this.props.trayectoSearched
+    );
     // Modificar para UPDATE USER
     fetch(`http://localhost:3001/api/trip/search`, {
       method: "POST",
@@ -52,14 +58,17 @@ export class FormBuscarViaje extends Component {
             trayectoSearched: true,
             trayectosArray: results
           });
-          localStorage.setItem("listaTrayectos", results);
-          localStorage.setItem("trayectosSearched", true);
+          localStorage.setItem("listaTrayectos", JSON.stringify(results));
+          localStorage.setItem("trayectoSearched", true);
           console.log(
             "Esto está en this.state.trayectosArray: ",
             this.state.trayectosArray
           );
-          console.log("El trayectoSearched esta en :", this.state.trayectoSearched);
-          
+          console.log(
+            "El trayectoSearched esta en :",
+            this.state.trayectoSearched
+          );
+
           // alert Add Viaje ok.
           alert(" Viaje buscado Madafaca!! ");
         }
@@ -67,16 +76,72 @@ export class FormBuscarViaje extends Component {
   };
 
   render() {
-    // if (this.state.trayectoSearch === true ){
-    //   return (
-        
-    //   )
-    // }
-
-    let lugarComienzo = this.state.lugarComienzo;
-    let lugarFinal = this.state.lugarFinal;
-    let horaComienzo = this.state.horaComienzo;
+    let trayectoSearched = this.state.trayectoSearched;
+    let { lugarComienzo, lugarFinal, horaComienzo } = this.state;
+    // let lugarComienzo = this.state.lugarComienzo;
+    // let lugarFinal = this.state.lugarFinal;
+    // let horaComienzo = this.state.horaComienzo;
     // let plazasLibres = this.state.plazasLibres;
+    // let trayectoSearched = localStorage.trayectoSearched;
+    console.log(
+      "valor trayectoSearched dentro render: ",
+      localStorage.trayectoSearched
+    );
+    if (trayectoSearched) {
+      console.log("Estoy dentro de la condicion");
+      return (
+        <div className="FormBuscarViaje-wrapper">
+          <Form onSubmit={this._handleSubmit}>
+            <Form.Group widths="equal">
+              <Form.Input
+                fluid
+                name="lugarComienzo"
+                label="¿Dónde comienza?"
+                placeholder="Escribe desde donde salimos"
+                onChange={this._handleChange}
+                type="text"
+                value={lugarComienzo}
+              />
+              <Form.Input
+                fluid
+                name="horaComienzo"
+                label="¿ A qué hora quedamos?"
+                onChange={this._handleChange}
+                placeholder="Aquí la hora"
+                type="text"
+                value={horaComienzo}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Input
+                fluid
+                name="lugarFinal"
+                label="¿ A donde vamos?"
+                onChange={this._handleChange}
+                placeholder="Escribe a donde vamos"
+                type="text"
+                width={8}
+                value={lugarFinal}
+              />
+              {/* <Form.Input
+              fluid
+              name="plazasLibres"
+              label="¿ Cuántos cabemos?"
+              onChange={this._handleChange}
+              placeholder="Plazas libres"
+              type="text"
+              width={4}
+              value={plazasLibres}
+              required
+            /> */}
+            </Form.Group>
+            <Form.Button>¡ Prueba Suerte !</Form.Button>
+          </Form>
+          <br/>
+          <TripsSearchedList />
+        </div>
+      );
+    }
 
     return (
       <div className="FormBuscarViaje-wrapper">

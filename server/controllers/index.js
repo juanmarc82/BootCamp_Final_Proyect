@@ -17,6 +17,8 @@ import deleteTrayecto from "./trayectoControllers/deleteTrayecto";
 import updateTrayecto from "./trayectoControllers/updateTrayecto";
 //Importamos searchTrayecto
 import searchTrayectos from "./trayectoControllers/searchTrayectos";
+//Importamos searchTrayecto
+import selectTrayectoByUser from "./trayectoControllers/selectTrayectoByUser";
 
 
 // Como asignamos directamente, los archivos anteriores usan export default
@@ -31,7 +33,8 @@ module.exports = {
   selectTrayectos,
   addTrayecto,
   deleteTrayecto,
-  searchTrayectos
+  searchTrayectos,
+  selectTrayectoByUser
 };
 
 // selectTrayecto, deleteTrayecto, updateTrayecto
