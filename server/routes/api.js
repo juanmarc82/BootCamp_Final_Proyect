@@ -34,5 +34,8 @@ router.post("/trip/delete", controller.deleteTrayecto);
 router.post("/trip/search", controller.searchTrayectos);
 // Apuntarse a un Trayecto de un Usuario
 router.put("/trip/selectByUser", controller.selectTrayectoByUser);
+// Buscar últimos 3 trayectos antes de hora actual.
+router.get("/trip/selectLastTrips", controller.selectLastTrips);
+
 
 module.exports = router;

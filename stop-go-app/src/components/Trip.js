@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 /*** Components Bootstrap ***/
-import { Table, Button, Icon } from "semantic-ui-react";
+import { Table, Button, Confirm } from "semantic-ui-react";
 
 export class Trip extends Component {
   constructor(props) {
@@ -42,6 +42,10 @@ export class Trip extends Component {
         alert(" Viaje Eliminado Madafaca!! ");
       });
   };
+  show = () => this.setState({ open: true })
+  handleConfirm = () => this.setState({ open: false })
+  handleCancel = () => this.setState({ open: false })
+
 
   render() {
     const {

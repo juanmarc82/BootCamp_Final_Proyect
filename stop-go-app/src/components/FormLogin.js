@@ -45,7 +45,8 @@ export class FormLogin extends Component {
 
         this.setState({
           nombre: results.usuario[0].nombre,
-          usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
+          usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID 
+          // results.usuario[0].usuarioID  
         });
         localStorage.setItem("usuario", JSON.stringify(results.usuario));
         // Añado redirect to "/" (home)
@@ -61,9 +62,10 @@ export class FormLogin extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
-
-        // this.state.usuarioConductorID
+        usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID 
+        
+        // this.state.usuarioConductorID  
+        // JSON.parse(localStorage.usuario.usuarioID) 
       })
     })
       .then(res => res.json())

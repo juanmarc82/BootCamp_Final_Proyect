@@ -305,7 +305,7 @@ let selectTrayectoByUser = function(req, res) {
     restarPlaza: req.body.restarPlaza
   };
   console.log("Parametros que llegan a trayecto :", trayecto);
-  
+
   return new Promise((resolve, reject) => {
     mysql.connection.query(
       `UPDATE trayectos_usuarios SET usuarioPasajeroID = '${
@@ -334,6 +334,33 @@ let selectTrayectoByUser = function(req, res) {
   });
 };
 
+// Select 3 primeros viajes que sean más próximos para salir.
+let selectLastTrips = function(req, res) {
+  return new Promise((resolve, reject) => {
+    mysql.connection.query(
+      `SELECT  * FROM trayectos_usuarios where horaComienzo>NOW()
+      ORDER BY horaComienzo asc limit 3`,
+      function(error, results, fields) {
+        if (error) {
+          console.log("my error ", error);
+          var results = {
+            error: error
+          };
+
+          reject(results);
+        } else {
+          // var results = {
+          //   error: null
+          // };
+          console.log("The result: ", JSON.stringify(results));
+
+          resolve(results);
+        }
+      }
+    );
+  });
+};
+
 //Añadir los trayectos.
 
 module.exports = {
@@ -345,5 +372,6 @@ module.exports = {
   addTrayecto,
   deleteTrayecto,
   searchTrayectos,
-  selectTrayectoByUser
+  selectTrayectoByUser,
+  selectLastTrips
 };

@@ -11,17 +11,20 @@
 }
 
 .Navbar-wrapper {
-  background: rgba(255, 255, 255, 0);
-  padding-left: 2%;
-  padding-right: 5%;
+  /* background: rgba(255, 255, 255, 0); */
+  /* padding-left: ;
+  padding-right: ; */
   border: none;
   box-shadow: none;
+  width: 100%;
+ background-color: #ffffff33;
 }
 
 .Navbar-wrapper,
 p {
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
+  background-color: #ffffff33;
 }
 
 .Navbar,
@@ -30,6 +33,17 @@ a {
   text-decoration-color: black;
   font-weight: bold;
 }
+.Logo-MenuNav {
+  width: 200px !important;
+  
+}
+.navbar-brand {
+  padding: 0px 0px;
+}
+/* .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: #e7e7e7;
+  background-color: #ffffff82;
+} */
 
 .Login-wrapper {
   background-image: url("./images/background-login2.jpg");
@@ -62,13 +76,62 @@ p {
   margin-top: 5%;
 }
 #footer {
-  position: relative;
-  width: 100%;
+  /* position: relative;
+  width: 100%; */
+  background-color: rgb(182, 178, 178);
 }
+.footer-columns{
+  text-align: left;
+  padding-left: 40%; 
+}
+.footer-lastFrase{
+  padding: 0 !important;
+}
+.footer-lastFrase p {
+  font-size: 0.7rem;
+  background-color: rgb(182, 178, 178);
+
+}
+
+.ui.list {
+  font-size: 0.8em;
+}
+
 .Background-image-home {
+  background-image: url("http://localhost:3000/static/media/background-prueba.58b2ee86.jpg"); 
   height: 600px;
   background-size: cover;
+  padding: 200px 100px;
+  margin: 0 auto;
+  position: relative;
 }
+.Background-image-home h1 {
+  font-size: 60px;
+  font-family: "Ubuntu", sans-serif;
+  color: black;
+  text-decoration-color: black;
+  font-weight: bold;
+}
+.Background-image-home h3 {
+  font-size: 30px;
+  font-family: "Oswald", sans-serif;
+  color: black;
+  text-decoration-color:black;
+}
+
+.Home-Trips  {
+  margin:20 px;
+  padding: 10px;
+  margin-bottom: 14px;
+  background-color: rgb(209, 209, 209);
+} 
+
+.Home-TripDiv {
+  /* border: 2px solid black; */
+  margin: 10px;
+  padding: 10px;
+}
+
 .Background-image-login {
   height: 600px;
   background-size: cover;

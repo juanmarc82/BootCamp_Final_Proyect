@@ -2,9 +2,10 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem, Image } from "react-bootstrap";
 //import Navbar from 'react-bootstrap/lib/Navbar';
 
+import Logo from "../images/stop&go.png";
 import { ButtonsIsLoggedIn } from "./ButtonsIsLoggedIn";
 
 export class MenuNav extends Component {
@@ -14,9 +15,9 @@ export class MenuNav extends Component {
       email: this.props.email,
       UserName: this.props.UserName,
       loggedIn: false
-    }
+    };
   }
-  componentDidMount(){}
+  componentDidMount() {}
   // Enlazar a Login
   _handleClickLogin = e => {
     // alert('You have clicked on Login. Pronto saldrá Login');
@@ -25,14 +26,14 @@ export class MenuNav extends Component {
   _handleClickRegister = e => {
     // alert('You have clicked on me Registro. Pronto saldrá Registro');
   };
-//  _handleClickSignOut = e => {
-//     localStorage.setItem("loggedIn", false);
-//     this.setState({
-//       loggedIn: false
-//     });
-//     console.log("Estoy cerrando sesion");
-    
-//   };
+  //  _handleClickSignOut = e => {
+  //     localStorage.setItem("loggedIn", false);
+  //     this.setState({
+  //       loggedIn: false
+  //     });
+  //     console.log("Estoy cerrando sesion");
+
+  //   };
 
   render() {
     return (
@@ -45,7 +46,13 @@ export class MenuNav extends Component {
       >
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={`/`}  >Stop | Go</Link>
+            <div className="Logo-MenuNav">
+              <Link to={`/`}>
+                {" "}
+                <Image src={Logo} rounded responsive />
+                {/* <Image src={Logo} size='medium' /> */}
+              </Link>
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -58,7 +65,7 @@ export class MenuNav extends Component {
               <Link to={`/contacto`}>Sobre nosotros</Link>
             </NavItem>
           </Nav>
-            <ButtonsIsLoggedIn userName= { this.state.UserName }/>
+          <ButtonsIsLoggedIn userName={this.state.UserName} />
           {/* <NavItem eventKey={3} onClick={this._handleClickRegister}>
               <Link to={`/registro`}>Registro</Link>
             </NavItem>
@@ -67,6 +74,6 @@ export class MenuNav extends Component {
             </NavItem> */}
         </Navbar.Collapse>
       </Navbar>
-    )
+    );
   }
 }
