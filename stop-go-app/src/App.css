@@ -98,7 +98,7 @@ p {
 }
 
 .Background-image-home {
-  background-image: url("http://localhost:3000/static/media/background-prueba.58b2ee86.jpg"); 
+  background-image: url("./images/background-prueba.jpg"); 
   height: 600px;
   background-size: cover;
   padding: 200px 100px;

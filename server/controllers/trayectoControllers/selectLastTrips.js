@@ -11,7 +11,8 @@ export default (function (req, res) {
         res.send(JSON.stringify({'ultimosTrayectos': results}));
         res.send(console.log("Respuesta del servidor al UPDATE Trayecto...:",results ))  
 
-    }).catch(function (error) {
+    })
+    .catch(function (error) {
 
         res.setHeader('Content-Type', 'application/json')
         res.status(500);

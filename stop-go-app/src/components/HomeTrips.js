@@ -25,11 +25,11 @@ export class HomeTrips extends Component {
       .then(res => res.json())
       .then(results => {
         console.log(results);
-        debugger;
+        
         this.setState({ "lastTrips": results });
         localStorage.setItem("lastTrips", JSON.stringify(results));
         console.log("this.state.lastTrips --> ", this.state.lastTrips);
-        debugger;
+        
       });
   }
 
@@ -41,7 +41,6 @@ export class HomeTrips extends Component {
       plazasLibres,
       trayectoID
     } = this.props;
-    debugger;
     return (
       <div className="Home-Trips">
         <Grid centered verticalAlign="middle" textAlign="center">

@@ -9,12 +9,13 @@ export class FormPublicarViaje extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID,
-      lugarComienzo: "",
-      lugarFinal: "",
-      horaComienzo: "",
-      plazasLibres: "",
-      trayectoAdd: false
+      "usuarioConductorID": JSON.parse(localStorage.usuario)[0].usuarioID,
+      "lugarComienzo": "",
+      "lugarFinal": "",
+      "horaComienzo": "",
+      "plazasLibres": "",
+      "trayectoAdd": false,
+      "trayectosArray": []
     };
   }
 
@@ -55,28 +56,25 @@ export class FormPublicarViaje extends Component {
         }
         // alert Add Viaje ok.
         alert(" Viaje Incluido Madafaca!! ");
-
         // Actualizar trayectos
         fetch(`http://localhost:3001/api/trip/select`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            usuarioConductorID: localStorage.usuario[0].usuarioConductorID
+            usuarioConductorID: this.state.usuarioConductorID
           })
         })
           .then(res => res.json())
           .then(results => {
             console.log(results);
             // Añado trayectos a setState y a localStorage
-            this.setState({ trayectos: results.trayectos[0] });
+            this.setState({ trayectos: results });
             localStorage.setItem("trayectos", JSON.stringify(results));
           });
       });
   };
 
   render() {
- 
-
     let lugarComienzo = this.state.lugarComienzo;
     let lugarFinal = this.state.lugarFinal;
     let horaComienzo = this.state.horaComienzo;

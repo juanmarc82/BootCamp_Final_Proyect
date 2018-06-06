@@ -13,13 +13,13 @@ export class FormBuscarViaje extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
-      lugarComienzo: "",
-      lugarFinal: "",
-      horaComienzo: "",
-      plazasLibres: "",
-      trayectoSearched: false,
-      trayectosArray: []
+     " usuarioPasajeroID": JSON.parse(localStorage.usuario)[0].usuarioID,
+      "lugarComienzo": "",
+      "lugarFinal": "",
+      "horaComienzo": "",
+      "plazasLibres": "",
+      "trayectoSearched": false,
+      "trayectosArray": []
     };
   }
 
@@ -37,7 +37,7 @@ export class FormBuscarViaje extends Component {
     e.preventDefault();
     console.log(
       "El trayectoSearched antes del fetch esta en :",
-      this.props.trayectoSearched
+      this.state.trayectoSearched
     );
     // Modificar para UPDATE USER
     fetch(`http://localhost:3001/api/trip/search`, {
@@ -51,24 +51,25 @@ export class FormBuscarViaje extends Component {
     })
       .then(res => res.json())
       .then(results => {
-        console.log(results);
-        // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
+        localStorage.setItem("listaTrayectos", results);
+        console.log(
+          "Esto es lo que hay en localStorage.listaTrayectos : ",
+          results
+        );
+        localStorage.setItem("trayectoSearched", true);
+        console.log(
+          "Esto está en this.state.trayectosArray: ",
+          this.state.trayectosArray
+        );
+        console.log(
+          "El trayectoSearched esta en :",
+          this.state.trayectoSearched
+        );
         if (results) {
           this.setState({
             trayectoSearched: true,
             trayectosArray: results
           });
-          localStorage.setItem("listaTrayectos", JSON.stringify(results));
-          localStorage.setItem("trayectoSearched", true);
-          console.log(
-            "Esto está en this.state.trayectosArray: ",
-            this.state.trayectosArray
-          );
-          console.log(
-            "El trayectoSearched esta en :",
-            this.state.trayectoSearched
-          );
-
           // alert Add Viaje ok.
           alert(" Viaje buscado Madafaca!! ");
         }
@@ -77,6 +78,7 @@ export class FormBuscarViaje extends Component {
 
   render() {
     let trayectoSearched = this.state.trayectoSearched;
+    let trayectoSearchedLocalStorage = localStorage.trayectoSearched;
     let { lugarComienzo, lugarFinal, horaComienzo } = this.state;
     // let lugarComienzo = this.state.lugarComienzo;
     // let lugarFinal = this.state.lugarFinal;
@@ -85,10 +87,9 @@ export class FormBuscarViaje extends Component {
     // let trayectoSearched = localStorage.trayectoSearched;
     console.log(
       "valor trayectoSearched dentro render: ",
-      localStorage.trayectoSearched
+      trayectoSearchedLocalStorage
     );
     if (trayectoSearched) {
-      console.log("Estoy dentro de la condicion");
       return (
         <div className="FormBuscarViaje-wrapper">
           <Form onSubmit={this._handleSubmit}>
@@ -123,22 +124,11 @@ export class FormBuscarViaje extends Component {
                 width={8}
                 value={lugarFinal}
               />
-              {/* <Form.Input
-              fluid
-              name="plazasLibres"
-              label="¿ Cuántos cabemos?"
-              onChange={this._handleChange}
-              placeholder="Plazas libres"
-              type="text"
-              width={4}
-              value={plazasLibres}
-              required
-            /> */}
             </Form.Group>
             <Form.Button>¡ Prueba Suerte !</Form.Button>
           </Form>
-          <br/>
-          <TripsSearchedList />
+          <br />
+          <TripsSearchedList tray={this.state.trayectosArray} />
         </div>
       );
     }
@@ -177,19 +167,7 @@ export class FormBuscarViaje extends Component {
               width={8}
               value={lugarFinal}
             />
-            {/* <Form.Input
-              fluid
-              name="plazasLibres"
-              label="¿ Cuántos cabemos?"
-              onChange={this._handleChange}
-              placeholder="Plazas libres"
-              type="text"
-              width={4}
-              value={plazasLibres}
-              required
-            /> */}
           </Form.Group>
-
           <Form.Button>¡ Prueba Suerte !</Form.Button>
         </Form>
       </div>

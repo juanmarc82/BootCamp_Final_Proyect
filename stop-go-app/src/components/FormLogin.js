@@ -8,12 +8,12 @@ export class FormLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      nombre: "",
-      usuarioConductorID: "",
-      loggedIn: false,
-      trayectos: []
+      "email": "",
+      "password": "",
+      "nombre": "",
+      "usuarioConductorID": "",
+      "loggedIn": false,
+      "trayectos": []
     };
   }
 
@@ -44,8 +44,8 @@ export class FormLogin extends Component {
         console.log(results);
 
         this.setState({
-          nombre: results.usuario[0].nombre,
-          usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID 
+          "nombre": results.usuario[0].nombre,
+          "usuarioConductorID": JSON.parse(localStorage.usuario)[0].usuarioID 
           // results.usuario[0].usuarioID  
         });
         localStorage.setItem("usuario", JSON.stringify(results.usuario));
@@ -53,7 +53,7 @@ export class FormLogin extends Component {
         if (results) {
           localStorage.setItem("loggedIn", true);
           this.setState({
-            loggedIn: true
+            "loggedIn": true
           });
         }
       });
@@ -72,7 +72,7 @@ export class FormLogin extends Component {
       .then(results => {
         console.log(results);
 
-        this.setState({ trayectos: results.trayectos[0] });
+        this.setState({ "trayectos": results });
         localStorage.setItem("trayectos", JSON.stringify(results));
       });
   };

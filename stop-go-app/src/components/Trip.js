@@ -2,23 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 /*** Components Bootstrap ***/
-import { Table, Button, Confirm } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 
 export class Trip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioID: JSON.parse(localStorage.usuario)[0].usuarioID,
-      trayectoID: this.props.trayectoID
+      "usuarioID": JSON.parse(localStorage.usuario)[0].usuarioID,
+      "trayectoID": this.props.trayectoID
     };
   }
   // Comprobar tipo de datos que importamos
   static propTypes = {
-    lugarComienzo: PropTypes.strings,
-    lugarFinal: PropTypes.strings,
-    horaComienzo: PropTypes.strings,
-    plazasLibres: PropTypes.number,
-    trayectoID: PropTypes.number
+    "lugarComienzo": PropTypes.strings,
+    "lugarFinal": PropTypes.strings,
+    "horaComienzo": PropTypes.strings,
+    "plazasLibres": PropTypes.number,
+    "trayectoID": PropTypes.number
   };
 
   _handleDeleteTrip = e => {

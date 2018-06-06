@@ -7,8 +7,8 @@ export class TripsSearchedList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: JSON.parse(localStorage.listaTrayectos),
-      trayectoSeleccionado: false
+      "trips": this.props.tray ,
+      "trayectoSeleccionado": false
     };
   }
   static propTypes = {
