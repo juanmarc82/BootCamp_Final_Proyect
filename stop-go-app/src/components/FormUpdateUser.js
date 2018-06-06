@@ -72,7 +72,7 @@ export class FormUpdateUser extends Component {
     let apellidos = this.state.apellidos;
     let telefono = this.state.telefono;
     let foto = this.state.foto;
-    // let conductor = this.state.conductor;
+    let conductor = this.state.conductor;
     let nie = this.state.nie;
     let sobreMi = this.state.sobreMi;
     let email = this.state.email;

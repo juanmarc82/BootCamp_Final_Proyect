@@ -14,7 +14,8 @@ export class HomeTrips extends Component {
       plazasLibres: this.props.plazasLibres,
       trayectoID: this.props.trayectoID,
       usuarioConductorID: this.props.usuarioConductorID,
-      lastTrips: this.props.lastTrips
+      lastTrips: this.props.lastTrips,
+      trayectoSeleccionado: false
     };
   }
   // Comprobar tipo de datos que importamos
@@ -27,25 +28,35 @@ export class HomeTrips extends Component {
     trayectoID: PropTypes.number,
     lastTrips: PropTypes.array
   };
-
-  // Añadir si da tiempo que te apunte al viaje
-  // componentDidMount() {
-  //   fetch(`http://localhost:3001/api/trip/selectLastTrips`, {
-  //     method: "GET",
-  //     headers: { "Content-Type": "application/json" }
-  //   })
-  //     .then(res => res.json())
-  //     .then(results => {
-  //       console.log(results);
-
-  //       this.setState({ "lastTrips": results });
-  //       localStorage.setItem("lastTrips", JSON.stringify(results));
-  //       console.log("this.state.lastTrips --> ", this.state.lastTrips);
-
-  //     });
-  // }
+  
+    _handleSelectByUserTrip = e => {
+      debugger
+      e.preventDefault();
+      fetch(`http://localhost:3001/api/trip/selectByUser`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          trayectoID: this.props.trayectoID,
+          usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
+          restarPlaza: 1
+        })
+      })
+        .then(res => res.json())
+        .then(results => {
+          console.log(results);
+          debugger
+          // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
+          if (results) {
+            this.setState({ "trayectoSeleccionado": true });
+          }
+          // alert Add Viaje ok.
+          alert(" Te has apuntado al Viaje!! ");
+        });
+    };
+  
 
   render() {
+    debugger
     const {
       nombre,
       horaComienzo,
@@ -55,39 +66,39 @@ export class HomeTrips extends Component {
       trayectoID,
       usuarioConductorID
     } = this.props;
-
+    debugger
     return (
       // <Grid.Column textAlign="center" className="Home-TripDiv">
-        <Card color="orange" centered className="Home-Card" >
-          <Card.Content>
-            <Image
-              floated="right"
-              size="mini"
-              src="/assets/images/avatar/large/steve.jpg"
-            />
-            <Card.Header>{nombre}</Card.Header>
-          </Card.Content>
-          <Card.Content extra>
-            <Card.Description>
-              <strong>Sale de: </strong> {lugarComienzo}
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <Card.Description>
-              <strong>Va a: </strong> {lugarFinal}
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <Card.Description>
-              <strong>Quedamos a las </strong> {horaComienzo}
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <Button basic color="green" id={usuarioConductorID}>
-              ¡Apúntame!
-            </Button>
-          </Card.Content>
-        </Card>
+      <Card color="yellow" centered className="Home-Card">
+        <Card.Content>
+          <Image
+            floated="right"
+            size="mini"
+            src="http://localhost:3000/static/media/user_default.fcfe2bd1.jpg"
+          />
+          <Card.Header>{nombre}</Card.Header>
+        </Card.Content>
+        <Card.Content extra>
+          <Card.Description>
+            <strong>Sale de: </strong> {lugarComienzo}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <Card.Description>
+            <strong>Va a: </strong> {lugarFinal}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <Card.Description>
+            <strong>Quedamos a las </strong> {horaComienzo}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <Button basic color="blue" id={usuarioConductorID} onClick={this._handleSelectByUserTrip}>
+            ¡Apúntame!
+          </Button>
+        </Card.Content>
+      </Card>
       // </Grid.Column>
     );
   }

@@ -9,7 +9,7 @@ export class HomeTripsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nombre: this.props.nombreUsuario,
+      nombre: this.props.nombre,
       usuarioID: JSON.parse(localStorage.usuario)[0].usuarioID,
       trayectoID: this.props.trayectoID,
       lugarComienzo: this.props.lugarComienzo,

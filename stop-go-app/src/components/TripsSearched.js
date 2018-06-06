@@ -40,7 +40,7 @@ export class TripsSearched extends Component {
           this.setState({ "trayectoSeleccionado": true });
         }
         // alert Add Viaje ok.
-        alert(" Te has apuntado al Viaje Madafaca!! ");
+        alert(" Te has apuntado al Viaje!! ");
       });
   };
 
