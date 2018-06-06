@@ -77,26 +77,7 @@ export class UserPanelContainer extends Component {
       .then(res => res.json())
       .then(results => {
         console.log(results);
-        // console.log(results.usuario[0].nombre);
-        // this.setState({ UserName: results.usuario[0].nombre });
-        // debugger;
-        // localStorage.setItem("usuario", JSON.stringify(results.usuario));
-        // console.log(localStorage.usuario[0].nombre);
-        // debugger;
-        // // Vaciar inputs al submit
-        // this.setState({
-        //   email: "",
-        //   password: "",
-        //   nombre: "",
-        //   apellidos: "",
-        //   nie: ""
-        // });
-        // if (results) {
-        //   localStorage.setItem("loggedIn", true);
-        //   this.setState({
-        //     loggedIn: true
-        //   });
-        // }
+
       });
   };
 

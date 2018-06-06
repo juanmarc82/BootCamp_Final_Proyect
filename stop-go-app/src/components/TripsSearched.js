@@ -2,23 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 /*** Components Bootstrap ***/
-import { Table, Button, Icon } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 
 export class TripsSearched extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
-      trayectoID: this.props.trayectoID
+      "usuarioPasajeroID": JSON.parse(localStorage.usuario)[0].usuarioID,
+      "trayectoID": this.props.trayectoID
     };
   }
   // Comprobar tipo de datos que importamos
   static propTypes = {
-    lugarComienzo: PropTypes.strings,
-    lugarFinal: PropTypes.strings,
-    horaComienzo: PropTypes.strings,
-    plazasLibres: PropTypes.strings,
-    trayectoID: PropTypes.number
+    "lugarComienzo": PropTypes.strings,
+    "lugarFinal": PropTypes.strings,
+    "horaComienzo": PropTypes.strings,
+    "plazasLibres": PropTypes.strings,
+    "trayectoID": PropTypes.number
   };
   _handleSelectByUserTrip = e => {
     e.preventDefault();
@@ -37,7 +37,7 @@ export class TripsSearched extends Component {
 
         // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
         if (results) {
-          this.setState({ trayectoSeleccionado: true });
+          this.setState({ "trayectoSeleccionado": true });
         }
         // alert Add Viaje ok.
         alert(" Te has apuntado al Viaje Madafaca!! ");

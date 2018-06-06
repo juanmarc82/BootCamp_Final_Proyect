@@ -85,16 +85,16 @@ export class FormLogin extends Component {
       <div className="Login-wrapper">
         <div className="Login-form">
           <Segment.Group>
-            <Segment inverted color="grey" size="tiny" raised>
+            <Segment  size="tiny" raised className="Login-Segment">
               <Form onSubmit={this._handleSubmit}>
                 <Segment
                   textAlign="center"
-                  inverted
-                  color="blue"
+                  // color aqui
+                  className="Login-Segment-Titulo"
                   size="tiny"
                   raised
                 >
-                  Inicia Sesión
+                 <h2> Inicia Sesión </h2>
                 </Segment>
                 <Form.Group widths="equal">
                   <Form.Input
@@ -120,7 +120,7 @@ export class FormLogin extends Component {
                     required
                   />
                 </Form.Group>
-                <Button type="submit" color="green">
+                <Button type="submit" color="green" basic>
                   Log In
                 </Button>
               </Form>

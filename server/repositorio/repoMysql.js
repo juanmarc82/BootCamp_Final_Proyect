@@ -338,7 +338,9 @@ let selectTrayectoByUser = function(req, res) {
 let selectLastTrips = function(req, res) {
   return new Promise((resolve, reject) => {
     mysql.connection.query(
-      `SELECT  * FROM trayectos_usuarios where horaComienzo>NOW()
+      `SELECT  usuarios.nombre, trayectos_usuarios.trayectoID, trayectos_usuarios.usuarioConductorID, trayectos_usuarios.lugarComienzo, trayectos_usuarios.lugarFinal, 
+      trayectos_usuarios.horaComienzo, trayectos_usuarios.plazasLibres  FROM trayectos_usuarios 
+      INNER JOIN usuarios ON usuarios.usuarioID = trayectos_usuarios.usuarioConductorID where horaComienzo>NOW()
       ORDER BY horaComienzo asc limit 3`,
       function(error, results, fields) {
         if (error) {

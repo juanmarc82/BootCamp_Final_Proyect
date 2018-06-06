@@ -10,10 +10,10 @@ export class FormRegister extends Component {
     this.state = {
       email: "",
       password: "",
-      password2:"",
+      password2: "",
       nombre: "",
-      apellidos:"",
-      nie:"",
+      apellidos: "",
+      nie: "",
       registeredOk: false
     };
   }
@@ -30,28 +30,28 @@ export class FormRegister extends Component {
 
   _handleSubmit = e => {
     e.preventDefault();
-     
-    if (this.state.password === this.state.password2){    
-        fetch(`http://localhost:3001/api/user/add`, {
+
+    if (this.state.password === this.state.password2) {
+      fetch(`http://localhost:3001/api/user/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-            nombre: this.state.nombre,
-            apellidos: this.state.apellidos,
-            nie: this.state.nie
+          email: this.state.email,
+          password: this.state.password,
+          nombre: this.state.nombre,
+          apellidos: this.state.apellidos,
+          nie: this.state.nie
         })
-        })
+      })
         .then(res => res.json())
         .then(results => {
-            console.log(results);
-            if (results) {
-              localStorage.setItem("registeredOk" , true );
-              this.setState({
-                registeredOk: true
-              })
-            }
+          console.log(results);
+          if (results) {
+            localStorage.setItem("registeredOk", true);
+            this.setState({
+              registeredOk: true
+            });
+          }
         });
     } else alert("Quillo, comprueba las contraseñas");
     // Vaciar inputs al submit
@@ -66,91 +66,98 @@ export class FormRegister extends Component {
   };
 
   render() {
-    if( this.state.registeredOk === true ){
-      return  <Redirect to="/" />
-     }
+    if (this.state.registeredOk === true) {
+      return <Redirect to="/" />;
+    }
     return (
-      <div className='Register-wrapper'>
-      <div className='Register-form'>
-          <Segment.Group unstackable>
-        <Segment inverted color="grey" size="tiny" raised>
-          <Form onSubmit={this._handleSubmit} >
-            <Segment textAlign="center" inverted color="blue" size="tiny" raised>
-              <h2>Regístrate</h2>
+      <div className="Register-wrapper">
+        <div className="Register-form">
+          <Segment.Group unstackable className="Formulario-Registro" raised>
+            <Segment size="tiny" raised className="Formulario-Registro">
+              <Form onSubmit={this._handleSubmit}>
+                <Segment
+                  textAlign="center"
+                  size="tiny"
+                  raised
+                  className="Formulario-Segment Register-Segment-Titulo"
+                >
+                  <h2>Regístrate</h2>
+                </Segment>
+                <Form.Group widths="equal">
+                  <Form.Input
+                    fluid
+                    className="inputEmail"
+                    name="email"
+                    label="Email"
+                    onChange={this._handleChange}
+                    placeholder="Tu email"
+                    type="email"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group widths="equal">
+                  <Form.Input
+                    fluid
+                    className="inputPassword"
+                    label="Password"
+                    name="password"
+                    onChange={this._handleChange}
+                    placeholder="Tu password"
+                    type="password"
+                    required
+                  />
+                  <Form.Input
+                    fluid
+                    className="inputPassword2"
+                    label="Password"
+                    name="password2"
+                    onChange={this._handleChange}
+                    placeholder="Confirma tu password"
+                    type="password"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group widths="equal">
+                  <Form.Input
+                    fluid
+                    className="inputName"
+                    label="Nombre"
+                    name="nombre"
+                    onChange={this._handleChange}
+                    placeholder="Tu nombre"
+                    type="text"
+                    required
+                  />
+                  <Form.Input
+                    fluid
+                    className="inputLastName"
+                    label="Apellidos"
+                    name="apellidos"
+                    onChange={this._handleChange}
+                    placeholder="Tu Apellidos"
+                    type="text"
+                  />
+                </Form.Group>
+                <Form.Group widths="equal">
+                  <Form.Input
+                    fluid
+                    className="inputNie"
+                    label="NIE"
+                    name="nie"
+                    onChange={this._handleChange}
+                    placeholder="Tu NIE"
+                    type="text"
+                    required
+                    validationState
+                  />
+                </Form.Group>
+                <Button type="submit" color="green" basic>
+                  Log In
+                </Button>
+              </Form>
             </Segment>
-            <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                className="inputEmail"
-                name="email"
-                label="Email"
-                onChange={this._handleChange}
-                placeholder="Tu email"
-                type="email"
-                required
-              />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                className="inputPassword"
-                label="Password"
-                name="password"
-                onChange={this._handleChange}
-                placeholder="Tu password"
-                type="password"
-                required
-              />
-              <Form.Input
-                fluid
-                className="inputPassword2"
-                label="Password"
-                name="password2"
-                onChange={this._handleChange}
-                placeholder="Confirma tu password"
-                type="password"
-                required
-              />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                className="inputName"
-                label="Nombre"
-                name="nombre"
-                onChange={this._handleChange}
-                placeholder="Tu nombre"
-                type="text"
-                required
-              />
-              <Form.Input
-                fluid
-                className="inputLastName"
-                label="Apellidos"
-                name="apellidos"
-                onChange={this._handleChange}
-                placeholder="Tu Apellidos"
-                type="text"
-              />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                className="inputNie"
-                label="NIE"
-                name="nie"
-                onChange={this._handleChange}
-                placeholder="Tu NIE"
-                type="text"
-                required
-                validationState
-              />
-            </Form.Group>
-            <Button type="submit" color='green'>Log In</Button>
-          </Form>
-        </Segment>
-      </Segment.Group>
-      </div>
+          </Segment.Group>
+        </div>
       </div>
     );
   }

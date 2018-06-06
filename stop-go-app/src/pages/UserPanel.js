@@ -24,9 +24,11 @@ export class UserPanel extends Component {
 
   render() {
     return (
-      <div className="UserPanel-wrapper">
+      <div>
         <MenuNav />
-        <UserPanelContainer />
+<div className="UserPanel-wrapper">
+          <UserPanelContainer />
+        </div>
         <Footer />
       </div>
     );

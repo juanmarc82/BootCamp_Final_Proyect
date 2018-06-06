@@ -17,25 +17,23 @@
   border: none;
   box-shadow: none;
   width: 100%;
- background-color: #ffffff33;
+  background-color: #ffffff33 !important;
 }
 
 .Navbar-wrapper,
 p {
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
-  background-color: #ffffff33;
 }
 
 .Navbar,
 a {
-  color: black;
-  text-decoration-color: black;
+  color: rgb(9, 65, 75);
+  text-decoration-color: rgb(9, 65, 75);
   font-weight: bold;
 }
 .Logo-MenuNav {
   width: 200px !important;
-  
 }
 .navbar-brand {
   padding: 0px 0px;
@@ -69,7 +67,6 @@ p {
   z-index: 1;
 }
 
-
 .Login-form {
   width: 50%;
   margin: 0 auto;
@@ -80,17 +77,16 @@ p {
   width: 100%; */
   background-color: rgb(182, 178, 178);
 }
-.footer-columns{
+.footer-columns {
   text-align: left;
-  padding-left: 40%; 
+  padding-left: 40%;
 }
-.footer-lastFrase{
+.footer-lastFrase {
   padding: 0 !important;
 }
 .footer-lastFrase p {
   font-size: 0.7rem;
   background-color: rgb(182, 178, 178);
-
 }
 
 .ui.list {
@@ -98,7 +94,7 @@ p {
 }
 
 .Background-image-home {
-  background-image: url("./images/background-prueba.jpg"); 
+  background-image: url("./images/background-prueba.jpg");
   height: 600px;
   background-size: cover;
   padding: 200px 100px;
@@ -108,23 +104,23 @@ p {
 .Background-image-home h1 {
   font-size: 60px;
   font-family: "Ubuntu", sans-serif;
-  color: black;
-  text-decoration-color: black;
+  color:rgb(8, 43, 49);
+  text-decoration-color: rgb(8, 43, 49);
   font-weight: bold;
 }
 .Background-image-home h3 {
   font-size: 30px;
   font-family: "Oswald", sans-serif;
-  color: black;
-  text-decoration-color:black;
+  color: rgb(8, 43, 49);
+  text-decoration-color: rgb(8, 43, 49);
 }
 
-.Home-Trips  {
-  margin:20 px;
+.Home-Trips {
+  margin: 20 px;
   padding: 10px;
   margin-bottom: 14px;
   background-color: rgb(209, 209, 209);
-} 
+}
 
 .Home-TripDiv {
   /* border: 2px solid black; */
@@ -156,7 +152,7 @@ p {
   padding: 5% 20% 5%;
 }
 /* Cambiar Foto fondo */
-.Update-wrapper {   
+.Update-wrapper {
   background-image: url("./images/background-register-welcomebar.jpeg");
   background-size: cover;
   width: 100%;
@@ -164,10 +160,34 @@ p {
   padding: 5% 20% 5%;
 }
 /****  User Panel CSS  ****/
+.UserPanel-wrapper {
+  background-color: rgb(209, 209, 209);
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 100px 100px 50px;
+}
+
 .UserPanel-Container {
   width: 100%;
   height: 20%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  background-color: rgb(148, 191, 191);
+  /* margin-top: 5%;
+  margin-bottom: 5%; */
+  background-color: rgb(209, 209, 209);
+}
+
+.Formulario-Registro{
+  background-color: rgb(255, 255, 255, 0.4) !important;
+}
+
+.Login-Segment{
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+.Login-Segment-Titulo {
+  background-color: rgba(248, 176, 51, 0.535) !important;
+
+}
+.Register-Segment-Titulo {
+  background-color: rgba(248, 176, 51, 0.535) !important;
+
 }

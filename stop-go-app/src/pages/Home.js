@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 /*** Components ***/
 import { MenuNav } from "../components/MenuNav";
-import { HomeTrips } from "../components/HomeTrips";
+import { HomeTripsFather } from "../components/HomeTripsFather";
 import Footer from "../components/Footer";
 
 /*** Components Semantic UI ***/
@@ -35,7 +35,15 @@ export class Home extends Component {
             </Grid.Row>
           </Grid>
         </div>
-        <HomeTrips />
+        <div className="Home-Trips">
+          <Grid centered verticalAlign="middle" textAlign="center">
+          <Grid.Row centered columns={4} width="equal"  className="Home-Trips-item">
+          {/* key={ultimosTrayectos.trayectoID} */}
+            <HomeTripsFather />
+            </Grid.Row>
+
+          </Grid>
+        </div>
         <Footer />
       </div>
     );
