@@ -57,8 +57,8 @@ export class HomeTrips extends Component {
     } = this.props;
 
     return (
-      <Grid.Column textAlign="center" className="Home-TripDiv">
-        <Card color="orange" centered>
+      // <Grid.Column textAlign="center" className="Home-TripDiv">
+        <Card color="orange" centered className="Home-Card" >
           <Card.Content>
             <Image
               floated="right"
@@ -88,7 +88,7 @@ export class HomeTrips extends Component {
             </Button>
           </Card.Content>
         </Card>
-      </Grid.Column>
+      // </Grid.Column>
     );
   }
 }

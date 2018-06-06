@@ -17,7 +17,7 @@
   border: none;
   box-shadow: none;
   width: 100%;
-  background-color: #ffffff33 !important;
+
 }
 
 .Navbar-wrapper,
@@ -38,11 +38,13 @@ a {
 .navbar-brand {
   padding: 0px 0px;
 }
-/* .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border-color: #e7e7e7;
-  background-color: #ffffff82;
-} */
-
+  background-color: #ffffff48;
+}
+.container-fluid{
+  background-color: rgb(182, 178, 178);
+}
 .Login-wrapper {
   background-image: url("./images/background-login2.jpg");
   background-size: cover;
@@ -190,4 +192,9 @@ p {
 .Register-Segment-Titulo {
   background-color: rgba(248, 176, 51, 0.535) !important;
 
+}
+
+.Home-Card{
+  display: inline-block !important;
+  margin:20px !important;
 }

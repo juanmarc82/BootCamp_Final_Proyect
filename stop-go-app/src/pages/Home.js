@@ -38,10 +38,8 @@ export class Home extends Component {
         <div className="Home-Trips">
           <Grid centered verticalAlign="middle" textAlign="center">
           <Grid.Row centered columns={4} width="equal"  className="Home-Trips-item">
-          {/* key={ultimosTrayectos.trayectoID} */}
             <HomeTripsFather />
             </Grid.Row>
-
           </Grid>
         </div>
         <Footer />
