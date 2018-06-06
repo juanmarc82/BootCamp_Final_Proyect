@@ -24,26 +24,18 @@ export class TripList extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID
-
-        // this.state.usuarioConductorID
-        // JSON.parse(localStorage.usuario.usuarioID)
       })
     })
       .then(res => res.json())
       .then(results => {
-        console.log("Este quiero", results);
-
         this.setState({
           trips: results,
           default: true
         });
-        console.log(results.trayectos);
-
         localStorage.setItem("trayectos", JSON.stringify(results));
       });
   }
   render() {
-    console.log("render");
     const { trips } = this.state;
     if (this.state.default) {
       return (
@@ -66,7 +58,7 @@ export class TripList extends Component {
         </div>
       );
     } else {
-      return <h1> Todavia nada </h1>;
+      return <h1> Ningún viaje listado por ahora </h1>;
     }
   }
 }

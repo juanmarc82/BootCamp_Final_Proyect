@@ -17,6 +17,7 @@
   border: none;
   box-shadow: none;
   width: 100%;
+  /* padding-top: 10px; */
 
 }
 
@@ -38,9 +39,10 @@ a {
 .navbar-brand {
   padding: 0px 0px;
 }
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  border-color: #e7e7e7;
-  background-color: #ffffff48;
+.navbar-default {
+  /* border-color: #e7e7e7;
+  background-color: #13d023d0; */
+
 }
 .container-fluid{
   background-color: rgb(182, 178, 178);
@@ -75,8 +77,6 @@ p {
   margin-top: 5%;
 }
 #footer {
-  /* position: relative;
-  width: 100%; */
   background-color: rgb(182, 178, 178);
 }
 .footer-columns {
@@ -118,8 +118,8 @@ p {
 }
 
 .Home-Trips {
-  margin: 20 px;
-  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   margin-bottom: 14px;
   background-color: rgb(209, 209, 209);
 }
@@ -198,3 +198,18 @@ p {
   display: inline-block !important;
   margin:20px !important;
 }
+
+.Home-Trips h2 {
+  font-size: 25px;
+  font-family: "Oswald", sans-serif;
+   color:rgb(8, 43, 49);
+  text-decoration-color: rgb(8, 43, 49);
+}
+.Home-Trips h2 span {
+  font-size: 40px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: italic;
+   color:rgb(8, 43, 49);
+  text-decoration-color: rgb(8, 43, 49);
+}
+

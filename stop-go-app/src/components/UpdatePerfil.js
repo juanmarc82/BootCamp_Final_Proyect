@@ -33,7 +33,6 @@ export class UpdatePerfil extends Component {
     console.log(name);
     this.setState({ [name]: value });
   };
-
   
   render() {
     let nombre = JSON.parse(localStorage.usuario)[0].nombre;
@@ -60,7 +59,7 @@ export class UpdatePerfil extends Component {
               placeholder="Nombre"
               onChange={this._handleChange}
               type="text"
-              // value={nombre}
+              value={nombre}
             />
             <Form.Input
               fluid
@@ -69,7 +68,7 @@ export class UpdatePerfil extends Component {
               onChange={this._handleChange}
               placeholder="Apellidos"
               type="text"
-              // value={apellidos}
+              value={apellidos}
             />
           </Form.Group>
           <Form.Group widths="equal">
@@ -125,15 +124,6 @@ export class UpdatePerfil extends Component {
             />
           </Form.Group>
           <Form.Group widths="equal">
-            {/* <Form.Select
-                  fluid
-                  name="conductor"
-                  label="Conductor"
-                  onChange={this._handleChange}
-                  options={optionsConductor}
-                  placeholder="si"
-                  // value={conductor}
-                /> */}
             <div class="form-group">
               <label for="exampleFormControlSelect1">Conductor</label>
               <select
@@ -155,7 +145,6 @@ export class UpdatePerfil extends Component {
               // value={foto}
             />
           </Form.Group>
-          {/* Añadir fotos usuario */}
           <Form.TextArea
             name="sobreMi"
             label="Habla sobre ti a los demás usuarios"

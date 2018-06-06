@@ -33,8 +33,6 @@ export class TripsSearched extends Component {
     })
       .then(res => res.json())
       .then(results => {
-        console.log(results);
-
         // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
         if (results) {
           this.setState({ "trayectoSeleccionado": true });
@@ -52,8 +50,6 @@ export class TripsSearched extends Component {
       plazasLibres,
       trayectoID
     } = this.props;
-    console.log(trayectoID);
-
     return (
       <Table striped stackable>
         <Table.Header>
@@ -64,7 +60,6 @@ export class TripsSearched extends Component {
             <Table.HeaderCell>Plazas Libres</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
           <Table.Row>
             <Table.Cell>{horaComienzo}</Table.Cell>

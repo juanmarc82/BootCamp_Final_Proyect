@@ -3,8 +3,6 @@ import React, { Component } from "react";
 // Components
 import img_prueba from "../images/user_default.jpg";
 
-//import { Link } from "react-router-dom";
-
 import { Card, Image } from "semantic-ui-react";
 
 export class PerfilUsuario extends Component {

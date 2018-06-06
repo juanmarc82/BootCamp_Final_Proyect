@@ -71,7 +71,7 @@ export class FormBuscarViaje extends Component {
             trayectosArray: results
           });
           // alert Add Viaje ok.
-          alert(" Viaje buscado Madafaca!! ");
+          alert(" Viaje buscado !! ");
         }
       });
   };

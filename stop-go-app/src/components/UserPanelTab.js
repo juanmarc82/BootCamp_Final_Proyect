@@ -12,9 +12,7 @@ const panes = [
   { menuItem: 'Modificar perfil', render: () => <Tab.Pane><FormUpdateUser /></Tab.Pane> },
   { menuItem: 'Tus viajes', render: () => <Tab.Pane><TripList /></Tab.Pane> },
   { menuItem: 'Publicar viajes', render: () => <Tab.Pane><FormPublicarViaje /></Tab.Pane> },
-  { menuItem: 'Buscar viajes', render: () => <Tab.Pane><FormBuscarViaje /></Tab.Pane> },
-  // { menuItem: 'Monedero StopGo', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
-  // { menuItem: 'Puntúa a otros usuarios', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+  { menuItem: 'Buscar viajes', render: () => <Tab.Pane><FormBuscarViaje /></Tab.Pane> }
 ]
 
 const UserPanelTab = () => <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />

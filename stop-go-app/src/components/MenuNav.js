@@ -17,22 +17,6 @@ export class MenuNav extends Component {
     };
   }
 
-  _handleClickLogin = e => {
-    // alert('You have clicked on Login. Pronto saldrá Login');
-  };
-  // Enlazar a Login
-  _handleClickRegister = e => {
-    // alert('You have clicked on me Registro. Pronto saldrá Registro');
-  };
-  //  _handleClickSignOut = e => {
-  //     localStorage.setItem("loggedIn", false);
-  //     this.setState({
-  //       loggedIn: false
-  //     });
-  //     console.log("Estoy cerrando sesion");
-
-  //   };
-
   render() {
     return (
       <Navbar

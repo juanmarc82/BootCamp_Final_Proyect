@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 /*** Components Semantic UI ***/
-import { Image, Grid, Card, Button } from "semantic-ui-react";
+import { Image, Card, Button, Icon } from "semantic-ui-react";
 
 export class HomeTrips extends Component {
   constructor(props) {
@@ -25,38 +25,34 @@ export class HomeTrips extends Component {
     lugarFinal: PropTypes.strings,
     horaComienzo: PropTypes.strings,
     plazasLibres: PropTypes.strings,
-    trayectoID: PropTypes.number,
+    trayectoID: PropTypes.strings,
     lastTrips: PropTypes.array
   };
-  
-    _handleSelectByUserTrip = e => {
-      debugger
-      e.preventDefault();
-      fetch(`http://localhost:3001/api/trip/selectByUser`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          trayectoID: this.props.trayectoID,
-          usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
-          restarPlaza: 1
-        })
+
+  _handleSelectByUserTrip = e => {
+    e.preventDefault();
+    fetch(`http://localhost:3001/api/trip/selectByUser`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        trayectoID: this.props.trayectoID,
+        usuarioPasajeroID: JSON.parse(localStorage.usuario)[0].usuarioID,
+        restarPlaza: 1
       })
-        .then(res => res.json())
-        .then(results => {
-          console.log(results);
-          debugger
-          // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
-          if (results) {
-            this.setState({ "trayectoSeleccionado": true });
-          }
-          // alert Add Viaje ok.
-          alert(" Te has apuntado al Viaje!! ");
-        });
-    };
-  
+    })
+      .then(res => res.json())
+      .then(results => {
+        console.log(results);
+        // Añado condición para redirect to "/panelUsuario" (Panel de Usuario)
+        if (results) {
+          this.setState({ trayectoSeleccionado: true });
+        }
+        // alert Add Viaje ok.
+        alert(" Te has apuntado al Viaje!! ");
+      });
+  };
 
   render() {
-    debugger
     const {
       nombre,
       horaComienzo,
@@ -66,9 +62,7 @@ export class HomeTrips extends Component {
       trayectoID,
       usuarioConductorID
     } = this.props;
-    debugger
     return (
-      // <Grid.Column textAlign="center" className="Home-TripDiv">
       <Card color="yellow" centered className="Home-Card">
         <Card.Content>
           <Image
@@ -94,7 +88,18 @@ export class HomeTrips extends Component {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button basic color="blue" id={usuarioConductorID} onClick={this._handleSelectByUserTrip}>
+          <a>
+            <Icon name="user" />
+            <strong>Plazas libres </strong> {plazasLibres}
+          </a>
+        </Card.Content>
+        <Card.Content extra>
+          <Button
+            basic
+            color="blue"
+            id={usuarioConductorID}
+            onClick={this._handleSelectByUserTrip}
+          >
             ¡Apúntame!
           </Button>
         </Card.Content>

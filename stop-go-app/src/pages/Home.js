@@ -23,12 +23,12 @@ export class Home extends Component {
             tablet={8}
             computer={4}
           >
-            <Grid.Row centered columns={3}>
+            <Grid.Row centered columns={2}>
               <Grid.Column textAlign="center">
                 <h1>!Para y Vamos!</h1>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row centered columns={3}>
+            <Grid.Row centered columns={2}>
               <Grid.Column textAlign="center">
                 <h3>Porque compartir es importante...</h3>
               </Grid.Column>
@@ -38,6 +38,7 @@ export class Home extends Component {
         <div className="Home-Trips">
           <Grid centered verticalAlign="middle" textAlign="center">
           <Grid.Row centered columns={4} width="equal"  className="Home-Trips-item">
+              <h2><span>¡Vamos!...  </span><em> Apúntate a alguno de los siguientes viajes en salir</em></h2>
             <HomeTripsFather />
             </Grid.Row>
           </Grid>

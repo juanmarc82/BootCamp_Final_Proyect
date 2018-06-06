@@ -39,7 +39,7 @@ export class Trip extends Component {
           this.setState({ trayectoDelete: true });
         }
         // alert Add Viaje ok.
-        alert(" Viaje Eliminado Madafaca!! ");
+        alert(" Viaje Eliminado !! ");
       });
   };
   show = () => this.setState({ open: true })

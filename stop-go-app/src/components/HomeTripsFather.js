@@ -37,32 +37,23 @@ export class HomeTripsFather extends Component {
     })
       .then(res => res.json())
       .then(results => {
-        console.log(results);
         if (results) {
           this.setState({
             lastTrips: results,
             default: true
           });
         }
-        console.log("this.state.lastTrips --> ", this.state.lastTrips);
-
         localStorage.setItem("lastTrips", results);
       });
   }
   render() {
     if (this.state.default) {
       return (
-        // <div className="Home-Trips">
-        //   <Grid centered verticalAlign="middle" textAlign="center">
         <HomeTripsList tray={this.state.lastTrips} />
-        //   </Grid>
-        // </div>
       );
     } else {
       return (
-        // <div className="Home-Trips">
         <Grid centered verticalAlign="middle" textAlign="center" />
-        // </div>
       );
     }
   }
