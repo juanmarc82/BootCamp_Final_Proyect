@@ -13,13 +13,13 @@ export class FormBuscarViaje extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     " usuarioPasajeroID": JSON.parse(localStorage.usuario)[0].usuarioID,
-      "lugarComienzo": "",
-      "lugarFinal": "",
-      "horaComienzo": "",
-      "plazasLibres": "",
-      "trayectoSearched": false,
-      "trayectosArray": []
+      "usuarioPasajeroID": JSON.parse(localStorage.usuario)[0].usuarioID,
+      lugarComienzo: "",
+      lugarFinal: "",
+      horaComienzo: "",
+      plazasLibres: "",
+      trayectoSearched: false,
+      trayectosArray: []
     };
   }
 
@@ -70,8 +70,6 @@ export class FormBuscarViaje extends Component {
             trayectoSearched: true,
             trayectosArray: results
           });
-          // alert Add Viaje ok.
-          alert(" Viaje buscado !! ");
         }
       });
   };

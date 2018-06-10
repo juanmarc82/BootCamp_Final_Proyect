@@ -2,8 +2,6 @@ import mysql from "../config/mysql";
 var connection = mysql.connection;
 
 let selectUsuario = function(req, res) {
-  // Set values into session
-  //initialize session variable
 
   let usuario = {
     email: req.body.email,
@@ -13,7 +11,7 @@ let selectUsuario = function(req, res) {
 
   return new Promise((resolve, reject) => {
     var sess = req.session;
-    console.log(req.body.email);
+    console.log("esta es el re.body.email: ", req.body.email);
     mysql.connection.query(
       `SELECT * FROM usuarios WHERE email= '${usuario.email}' AND password= '${
         usuario.password

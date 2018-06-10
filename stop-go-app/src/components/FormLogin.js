@@ -41,7 +41,7 @@ export class FormLogin extends Component {
     })
       .then(res => res.json())
       .then(results => {
-        console.log(results);
+        console.log("Select usuario en fetch login : ", results);
 
         this.setState({
           "nombre": results.usuario[0].nombre,
@@ -64,8 +64,6 @@ export class FormLogin extends Component {
       body: JSON.stringify({
         usuarioConductorID: JSON.parse(localStorage.usuario)[0].usuarioID 
         
-        // this.state.usuarioConductorID  
-        // JSON.parse(localStorage.usuario.usuarioID) 
       })
     })
       .then(res => res.json())

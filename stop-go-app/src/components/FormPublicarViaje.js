@@ -55,7 +55,7 @@ export class FormPublicarViaje extends Component {
           });
         }
         // alert Add Viaje ok.
-        alert(" Viaje Incluido Madafaca!! ");
+        alert(" Viaje Incluido !! ");
         // Actualizar trayectos
         fetch(`http://localhost:3001/api/trip/select`, {
           method: "POST",

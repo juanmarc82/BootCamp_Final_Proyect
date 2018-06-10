@@ -213,3 +213,9 @@ p {
   text-decoration-color: rgb(8, 43, 49);
 }
 
+.NotFound-wrapper {
+  padding: 20px;
+  background-color: rgb(209, 209, 209);
+  text-align: center;
+  padding-bottom:350px;
+}

@@ -152,7 +152,7 @@ export class FormRegister extends Component {
                   />
                 </Form.Group>
                 <Button type="submit" color="green" basic>
-                  Log In
+                  Regístrame
                 </Button>
               </Form>
             </Segment>
